@@ -1,0 +1,9 @@
+---
+description: Understanding how to style elements, build components, use themes, build com 
+globs: 
+alwaysApply: false
+---
+
+# Styling elements or components
+- Use inline style props e.g. style={{...}} for stying.
+## Colors

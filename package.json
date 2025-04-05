@@ -1,0 +1,32 @@
+{
+  "name": "utopia-project-simplified",
+  "version": "0.1.0",
+  "utopia": {
+    "main-ui": "utopia/storyboard.js",
+    "html": "public/index.html",
+    "js": "src/index.jsx"
+  },
+  "scripts": {
+    "update-storyboard": "node scripts/updateStoryboard.js",
+    "update-storyboard:verbose": "node scripts/updateStoryboard.js --verbose",
+    "watch-storyboard": "chokidar \"src/**/*.{js,jsx,ts,tsx}\" -c \"npm run update-storyboard\"",
+    "watch-storyboard:verbose": "chokidar \"src/**/*.{js,jsx,ts,tsx}\" -c \"npm run update-storyboard:verbose\"",
+    "start": "vite",
+    "dev": "concurrently \"npm run watch-storyboard\" \"npm run start\"",
+    "dev:verbose": "concurrently \"npm run watch-storyboard:verbose\" \"npm run start\"",
+    "build": "npm run update-storyboard && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "utopia-api": "0.5.2",
+    "wouter": "^3.6.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.0",
+    "chokidar-cli": "^3.0.0",
+    "concurrently": "^8.2.2",
+    "vite": "^5.0.0"
+  }
+}
