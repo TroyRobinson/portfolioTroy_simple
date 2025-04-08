@@ -10,6 +10,45 @@ body, #canvas-container * {
     src: local(ITC Garamond ) format('ttf');
   }
 
+/* Normalize text element spacing in CSS */
+body h1, 
+body h2, 
+body h3, 
+body h4, 
+body h5, 
+body h6, 
+body p,
+#canvas-container h1,
+#canvas-container h2, 
+#canvas-container h3, 
+#canvas-container h4, 
+#canvas-container h5,
+#canvas-container h6, 
+#canvas-container p,
+.appheadercontainer h1,
+.appheadercontainer h2,
+.appheadercontainer p {
+    display: block !important;
+    line-height: 1.2 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+/* Fix vertical alignment of text elements */
+h1::before, h1::after,
+h2::before, h2::after,
+h3::before, h3::after,
+h4::before, h4::after,
+h5::before, h5::after,
+h6::before, h6::after,
+p::before, p::after {
+    content: "" !important;
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
 
 .appheadercontainer, .listcardcontainer, .gridcardcontainer {
     container-type: inline-size;

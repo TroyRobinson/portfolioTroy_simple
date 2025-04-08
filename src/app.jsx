@@ -36,6 +36,37 @@ export const App = () => {
         -moz-osx-font-smoothing: grayscale;
       }
       
+      /* Normalize text element spacing */
+      /* Using more specific selectors to override Utopia styles */
+      body h1, 
+      body h2, 
+      body h3, 
+      body h4, 
+      body h5, 
+      body h6, 
+      body p,
+      body div h1,
+      body div h2, 
+      body div h3, 
+      body div h4, 
+      body div h5,
+      body div h6, 
+      body div p {
+        display: block;
+        line-height: 1.2 !important;
+        max-width: 100%;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        border-width: 0 !important;
+        overflow-wrap: break-word;
+      }
+      
       /* Disable all container queries */
       @container (*) {
         * {
