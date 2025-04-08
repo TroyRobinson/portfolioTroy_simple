@@ -1,7 +1,7 @@
 import React from 'react'
 import { FlexCol, FlexRow } from '../utils.jsx'
 import { Tag } from '../components/Tag.jsx'
-import { PageLayout } from '../components/PageLayout.jsx'
+import { Header } from '../components/Header.jsx'
 import { Link } from '../Router.jsx'
 
 // Pre-import InstantDB to reduce initial loading time
@@ -461,7 +461,20 @@ const PortfolioPage = ({ style }) => {
   )
 
   return (
-    <PageLayout title='Case Studies' style={{ ...style }}>
+    <FlexCol
+      style={{
+        width: '100%',
+        maxWidth: '1200px',
+        margin: '0 auto',
+        minHeight: '100vh',
+        padding: '20px',
+        boxSizing: 'border-box',
+        overflowX: 'hidden',
+        alignItems: 'flex-start',
+        ...style
+      }}
+    >
+      <Header title="Case Studies" />
       <FlexCol
         style={{
           padding: '20px',
@@ -829,7 +842,7 @@ const PortfolioPage = ({ style }) => {
           ))}
         </FlexCol>
       </FlexCol>
-    </PageLayout>
+    </FlexCol>
   )
 }
 

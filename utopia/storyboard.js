@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Scene, Storyboard } from 'utopia-api'
 import App from '../src/app'
-import { PageLayout } from '../src/components/PageLayout'
+import { Header } from '../src/components/Header'
 import { Tag } from '../src/components/Tag'
 import { Button } from '../src/components/UI/Button'
 import PortfolioPage from '../src/pages/PortfolioPage'
@@ -38,20 +38,18 @@ export var storyboard = (
       </>
     </Scene>
     <Scene
-      id='pagelayout-scene'
-      commentId='pagelayout-scene'
+      id='header-scene'
+      commentId='header-scene'
       style={{
-        width: 600,
-        height: 400,
+        width: 10,
+        height: 1,
         position: 'absolute',
         left: 212,
-        top: 1884,
+        top: 1584,
       }}
-      data-label='PageLayout'
+      data-label='Header'
     >
-      <PageLayout style={{}} title="Sample Title">
-        <div>Sample content</div>
-      </PageLayout>
+      <Header style={{}} />
     </Scene>
     <Scene
       id='tag-scene'
