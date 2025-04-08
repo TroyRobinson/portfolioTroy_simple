@@ -11,78 +11,63 @@ export const Header = ({
   title = 'Portfolio',
   style = {},
 }) => {
-  // Component-level width constraints
-  const headerContainerStyle = {
-    width: '100%',
-    maxWidth: '1200px',
-    minWidth: '700px',
-    margin: '0 auto', // Using margin here for container positioning
-    padding: '0 16px', // 16px = 8px * 2
-    ...style
-  };
-  
-  const headerTopStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    width: '100%',
-    padding: '32px 0', // 32px = 8px * 4
-    border: '0',
-  };
-  
-  const h1Style = {
-    fontSize: '48px',
-    fontWeight: 'bold',
-    lineHeight: '1.2', // Using global line-height setting
-    padding: '0 0 8px 0', // 8px = 8px * 1
-    color: 'rgb(255, 0, 0)',
-    display: 'block',
-  };
-  
-  const pStyle = {
-    fontSize: '16px', // Updated to match 16px base
-    lineHeight: '1.2',
-    padding: '0',
-    color: '#666',
-    display: 'block',
-  };
-  
-  const dividerStyle = {
-    height: '1px',
-    width: '100%',
-    backgroundColor: '#e0e0e0',
-    padding: '16px 0 0 0', // Converted top margin to padding (16px = 8px * 2)
-    display: 'block',
-  };
-  
-  const titleSectionStyle = {
-    padding: '16px 0', // 16px = 8px * 2
-  };
-  
-  const h2Style = {
-    fontSize: '32px',
-    fontWeight: 'bold',
-    lineHeight: '1.2',
-    color: '#333',
-    display: 'block',
-  };
-
   return (
-    <div style={headerContainerStyle}>
-      <div style={headerTopStyle}>
-        <h1 style={h1Style}>
+    <div style={{
+      width: '100%',
+      maxWidth: '1200px',
+      minWidth: '700px',
+      margin: '0 auto',
+      padding: '0 16px',
+      ...style
+    }}>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        width: '100%',
+        padding: '32px 0',
+        border: '0'
+      }}>
+        <h1 style={{
+          fontSize: '48px',
+          fontWeight: 'bold',
+          lineHeight: '1.2',
+          padding: '0 0 8px 0',
+          color: 'rgb(255, 0, 0)',
+          display: 'block'
+        }}>
           Simple Portfolio
         </h1>
-        <p style={pStyle}>
+        <p style={{
+          fontSize: '16px',
+          lineHeight: '1.2',
+          padding: '0',
+          color: '#666',
+          display: 'block'
+        }}>
           A minimal demo project
         </p>
       </div>
       
-      <div style={dividerStyle} />
+      <div style={{
+        height: '1px',
+        width: '100%',
+        backgroundColor: '#e0e0e0',
+        padding: '16px 0 0 0',
+        display: 'block'
+      }} />
       
       {title && (
-        <div style={titleSectionStyle}>
-          <h2 style={h2Style}>
+        <div style={{
+          padding: '16px 0'
+        }}>
+          <h2 style={{
+            fontSize: '32px',
+            fontWeight: 'bold',
+            lineHeight: '1.2',
+            color: '#333',
+            display: 'block'
+          }}>
             {title}
           </h2>
         </div>
