@@ -25,6 +25,12 @@ export const App = () => {
         color: #333;
       }
       
+      /* Reset margins for headings and paragraphs */
+      h1, h2, h3, h4, h5, h6, p {
+        margin: 0;
+        padding: 0;
+      }
+      
       /* For Firefox */
       * {
         scrollbar-width: thin;
