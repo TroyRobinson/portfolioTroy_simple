@@ -5,12 +5,13 @@ alwaysApply: false
 ---
 # Styling elements or components
 - Use inline style props e.g. style={{...}} for stying. No styles via other props, CSS in the top of the file, or CSS files (except for global below).
-- Set line-height: 1.2 on text elements to control spacing (global reset in app.jsx handles defaults).
-- Remember browser text elements have default spacing from both margins and line-height.
+- Control external spacing between elements using padding (in 8px increments).
+- Internal text spacing is controlled by the global line-height reset in app.jsx.
 
 # Theme 
 - Generally develop the theme of the app via component primatives (see below)
 - Only use the global CSS file and variables for default font, brand accent color, and completely global styles.
 - Size & spacing in 8px increments
+- Use the global line-height setting in app.jsx (line-height: 1.2) for consistent text spacing.
 
 # 
