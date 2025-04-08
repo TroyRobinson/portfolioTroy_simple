@@ -5,6 +5,8 @@ alwaysApply: false
 ---
 # Styling elements or components
 - Use inline style props e.g. style={{...}} for stying. No styles via other props, CSS in the top of the file, or CSS files (except for global below).
+- Set line-height: 1.2 on text elements to control spacing (global reset in app.jsx handles defaults).
+- Remember browser text elements have default spacing from both margins and line-height.
 
 # Theme 
 - Generally develop the theme of the app via component primatives (see below)

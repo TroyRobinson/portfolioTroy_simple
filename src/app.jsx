@@ -11,24 +11,47 @@ export const App = () => {
     const style = document.createElement('style');
     
     style.textContent = `
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      
       html {
         overflow-y: scroll;
         scrollbar-gutter: stable;
       }
       
       body {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
         font-family: sans-serif;
         background-color: #f9f9f9;
         color: #333;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
       
-      /* Reset margins for headings and paragraphs */
+      /* Reset text elements */
       h1, h2, h3, h4, h5, h6, p {
-        margin: 0;
-        padding: 0;
+        line-height: 1.2;
+      }
+      
+      /* Reset form elements */
+      button, input, select, textarea {
+        font-family: inherit;
+        font-size: 100%;
+        line-height: 1.2;
+        color: inherit;
+      }
+      
+      /* Remove list styles */
+      ul, ol {
+        list-style: none;
+      }
+      
+      /* Remove link styling */
+      a {
+        text-decoration: none;
+        color: inherit;
       }
       
       /* For Firefox */
