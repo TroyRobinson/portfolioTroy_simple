@@ -477,6 +477,7 @@ const PortfolioPage = ({ style }) => {
             justifyContent: 'space-between',
             alignItems: 'center',
             padding: '0 0 20px 0',
+            width: '100%',
           }}
         >
           <FlexCol style={{ gap: '5px' }}>
@@ -725,7 +726,7 @@ const PortfolioPage = ({ style }) => {
             </div>
           )}
         {/* Case Studies List */}
-        <FlexCol style={{ gap: '15px' }}>
+        <FlexCol style={{ gap: '15px', width: '100%' }}>
           {sortedCaseStudies.map((study) => (
             <div
               key={study.id}
