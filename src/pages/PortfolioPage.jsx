@@ -77,9 +77,6 @@ const PortfolioPage = ({ style }) => {
   const [error, setError] = React.useState(null);
   const [caseStudies, setCaseStudies] = React.useState([]);
   const [dialogOpen, setDialogOpen] = React.useState(false);
-  const [bulkEditOpen, setBulkEditOpen] = React.useState(false);
-  const [bulkEditJson, setBulkEditJson] = React.useState('');
-  const [jsonError, setJsonError] = React.useState(null);
   const [db, setDb] = React.useState(null);
   const [dummyDataLoaded, setDummyDataLoaded] = React.useState(false);
   const [isClearing, setIsClearing] = React.useState(false);
@@ -395,106 +392,18 @@ const PortfolioPage = ({ style }) => {
     return timeA - timeB;
   });
 
-  // Bulk edit functions
-  const openBulkEdit = () => {
-    const dataToEdit = caseStudies.length > 0 
-      ? caseStudies.map(({ id, ...rest }) => rest)
-      : SAMPLE_CASE_STUDIES;
-    
-    setBulkEditJson(JSON.stringify(dataToEdit, null, 2));
-    setJsonError(null);
-    setBulkEditOpen(true);
-  };
-
-  // Validate JSON format for bulk editing
-  const validateJson = (jsonString) => {
-    try {
-      const parsed = JSON.parse(jsonString);
-      
-      if (!Array.isArray(parsed)) {
-        return { valid: false, error: "JSON must be an array of case studies" };
-      }
-      
-      // Validate required fields
-      for (let i = 0; i < parsed.length; i++) {
-        const item = parsed[i];
-        if (!item.name) {
-          return { valid: false, error: `Item at index ${i} is missing the required 'name' field` };
-        }
-        if (!item.technologies) {
-          return { valid: false, error: `Item at index ${i} is missing the required 'technologies' field` };
-        }
-      }
-      
-      return { valid: true, data: parsed };
-    } catch (err) {
-      return { valid: false, error: `Invalid JSON: ${err.message}` };
-    }
-  };
-
-  // Sync database with bulk edited JSON data
-  const syncWithEditedJson = async (jsonString) => {
-    if (!db) {
-      setError("Database not initialized");
-      return false;
-    }
-    
-    // Validate JSON data
-    const validation = validateJson(jsonString);
-    if (!validation.valid) {
-      setJsonError(validation.error);
-      return false;
-    }
-    
-    setJsonError(null);
-    setIsClearing(true);
-    setStatus("Syncing database with edited JSON...");
-    
-    try {
-      // Clear existing data first
-      await deleteAllData(false);
-      
-      // Add the new case studies from the JSON
-      const newStudies = validation.data;
-      setStatus(`Adding ${newStudies.length} case studies from edited JSON...`);
-      
-      // Create all transactions
-      const transactions = newStudies.map((study, index) => {
-        const baseTimestamp = Date.now();
-        const orderPreservingTimestamp = baseTimestamp - (newStudies.length - index) * 1000;
-        
-        return db.database.tx.caseStudies[db.id()].update({
-          name: study.name,
-          description: study.description || '',
-          technologies: study.technologies,
-          date: study.date || new Date().toISOString().split('T')[0],
-          createdAt: orderPreservingTimestamp,
-        });
-      });
-      
-      // Execute all transactions in one batch
-      await db.database.transact(...transactions);
-      
-      setStatus("Database successfully synchronized with edited JSON!");
-      setTimeout(() => setStatus(''), 3000);
-      
-      return true;
-    } catch (err) {
-      console.error("Error syncing with edited JSON:", err);
-      setError(`Error syncing with edited JSON: ${err.message}`);
-      setStatus("Error occurred during database sync.");
-      setTimeout(() => setStatus(''), 3000);
-      
-      return false;
-    } finally {
-      setIsClearing(false);
-      setBulkEditOpen(false);
-    }
-  };
-
   return (
     <PageLayout title="Case Studies" style={{...style}}>
-      <FlexCol style={{ padding: '20px', backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
+      <FlexCol style={{ 
+        padding: '20px', 
+        backgroundColor: 'white', 
+        borderRadius: '8px', 
+        boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+        maxWidth: '1200px',
+        minWidth: '800px',
+        margin: '0 auto',
+        width: '100%'
+      }}>
         <FlexRow style={{ justifyContent: 'space-between', alignItems: 'center', padding: '0 0 20px 0' }}>
           <FlexCol style={{ gap: '5px' }}>
             <div style={{ fontSize: '0.9rem', color: '#666' }}>
@@ -519,46 +428,23 @@ const PortfolioPage = ({ style }) => {
             )}
           </FlexCol>
           
-          <FlexRow style={{ gap: '10px' }}>
-            {db && !loading && (
-              <button
-                onClick={openBulkEdit}
-                disabled={isClearing}
-                title="Edit case studies as JSON"
-                style={{
-                  backgroundColor: '#805ad5',
-                  color: 'white',
-                  padding: '10px 15px',
-                  borderRadius: '4px',
-                  border: 'none',
-                  cursor: isClearing ? 'not-allowed' : 'pointer',
-                  fontWeight: 'bold',
-                  fontSize: '0.9rem',
-                  opacity: isClearing ? 0.7 : 1
-                }}
-              >
-                {isClearing ? <><Spinner /> Processing...</> : '📝 Edit Bulk Data'}
-              </button>
-            )}
-          
-            <button
-              onClick={() => setDialogOpen(true)}
-              disabled={isClearing || loading}
-              style={{
-                backgroundColor: '#2b6cb0',
-                color: 'white',
-                padding: '10px 15px',
-                borderRadius: '4px',
-                border: 'none',
-                cursor: (isClearing || loading) ? 'not-allowed' : 'pointer',
-                fontWeight: 'bold',
-                fontSize: '0.9rem',
-                opacity: (isClearing || loading) ? 0.7 : 1
-              }}
-            >
-              Add New Case Study
-            </button>
-          </FlexRow>
+          <button
+            onClick={() => setDialogOpen(true)}
+            disabled={isClearing || loading}
+            style={{
+              backgroundColor: '#2b6cb0',
+              color: 'white',
+              padding: '10px 15px',
+              borderRadius: '4px',
+              border: 'none',
+              cursor: (isClearing || loading) ? 'not-allowed' : 'pointer',
+              fontWeight: 'bold',
+              fontSize: '0.9rem',
+              opacity: (isClearing || loading) ? 0.7 : 1
+            }}
+          >
+            Add New Case Study
+          </button>
         </FlexRow>
         
         {error && (
@@ -571,104 +457,6 @@ const PortfolioPage = ({ style }) => {
             marginBottom: '15px'
           }}>
             Error: {error}
-          </div>
-        )}
-        
-        {/* Bulk Edit Modal */}
-        {bulkEditOpen && (
-          <div style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            zIndex: 1000
-          }}>
-            <div style={{
-              backgroundColor: 'white',
-              borderRadius: '6px',
-              boxShadow: '0 2px 10px rgba(0, 0, 0, 0.12)',
-              width: '90%',
-              maxWidth: '800px',
-              padding: '20px',
-              maxHeight: '85vh',
-              overflowY: 'auto'
-            }}>
-              <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', padding: '0 0 10px 0' }}>
-                Edit Case Studies JSON
-              </h3>
-              
-              <p style={{ fontSize: '0.9rem', color: '#666', marginBottom: '10px' }}>
-                Edit the JSON directly to add, remove, or modify case studies. Each case study requires at minimum a 'name' and 'technologies' field.
-              </p>
-              
-              {jsonError && (
-                <div style={{ 
-                  color: 'red', 
-                  backgroundColor: '#ffeeee', 
-                  padding: '10px', 
-                  border: '1px solid #ffcccc',
-                  borderRadius: '4px',
-                  marginBottom: '10px',
-                  fontSize: '0.9rem'
-                }}>
-                  {jsonError}
-                </div>
-              )}
-              
-              <textarea
-                value={bulkEditJson}
-                onChange={(e) => setBulkEditJson(e.target.value)}
-                style={{
-                  width: '100%',
-                  height: '400px',
-                  padding: '10px',
-                  fontFamily: 'monospace',
-                  fontSize: '14px',
-                  border: '1px solid #ddd',
-                  borderRadius: '4px',
-                  resize: 'vertical'
-                }}
-              />
-              
-              <FlexRow style={{ justifyContent: 'flex-end', gap: '10px', padding: '15px 0 0 0' }}>
-                <button 
-                  onClick={() => setBulkEditOpen(false)}
-                  disabled={isClearing}
-                  style={{
-                    padding: '10px 15px',
-                    backgroundColor: '#f3f4f6',
-                    border: 'none',
-                    borderRadius: '4px',
-                    cursor: isClearing ? 'not-allowed' : 'pointer',
-                    opacity: isClearing ? 0.7 : 1
-                  }}
-                >
-                  Cancel
-                </button>
-                
-                <button 
-                  onClick={() => syncWithEditedJson(bulkEditJson)}
-                  disabled={isClearing}
-                  style={{
-                    padding: '10px 15px',
-                    backgroundColor: '#805ad5',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '4px',
-                    cursor: isClearing ? 'not-allowed' : 'pointer',
-                    fontWeight: 'bold',
-                    opacity: isClearing ? 0.7 : 1
-                  }}
-                >
-                  {isClearing ? <><Spinner /> Syncing...</> : 'Save & Sync Database'}
-                </button>
-              </FlexRow>
-            </div>
           </div>
         )}
         
