@@ -49,6 +49,7 @@ export const App = () => {
         background-color: #f9f9f9;
         color: #333;
         width: 100%;
+        min-width: 320px;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
@@ -108,6 +109,7 @@ export const App = () => {
       .container {
         width: 100%;
         max-width: 1200px;
+        min-width: 320px;
         padding: 0 16px;
         margin: 0 auto;
         position: relative;

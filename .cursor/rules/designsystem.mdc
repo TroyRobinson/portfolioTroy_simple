@@ -4,14 +4,33 @@ globs:
 alwaysApply: false
 ---
 # Styling elements or components
-- Use inline style props e.g. style={{...}} for stying. No styles via other props, CSS in the top of the file, or CSS files (except for global below).
+- Use inline style props e.g. style={{...}} for styling. No styles via other props, CSS in the top of the file, or CSS files (except for global below).
 - Control external spacing between elements using padding (in 8px increments).
+- Component-specific constraints (min-width, max-width, etc.) should be defined at the component level, not globally.
 - Internal text spacing is controlled by the global line-height reset in app.jsx.
+
+# Global styles (app.jsx only)
+- Only use global CSS for:
+  - Browser resets (margins, padding, box-sizing)
+  - Default font families
+  - Brand accent colors
+  - Base text rendering settings
+- Avoid putting layout constraints (widths, heights) in global styles
+- Global styles should focus on normalization, not layout decisions
+
+# Layout principles
+- Size & spacing in 8px increments
+- Component width constraints:
+  - Define min/max widths at component level
+  - Use pixels for explicit constraints
+  - Document width requirements in component JSDoc
+- Padding for spacing between elements
+- Margin only for specific component positioning needs
+
+# Typography
+- Use the global line-height setting (1.2) for consistent text spacing
+- Font sizes in pixels for consistency
+- Text styles (weight, color) defined at component level
 
 # Theme 
 - Generally develop the theme of the app via component primatives (see below)
-- Only use the global CSS file and variables for default font, brand accent color, and completely global styles.
-- Size & spacing in 8px increments
-- Use the global line-height setting in app.jsx (line-height: 1.2) for consistent text spacing.
-
-# 
