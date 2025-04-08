@@ -11,54 +11,80 @@ export const Header = ({
   title = 'Portfolio',
   style = {},
 }) => {
+  // Force fixed spacing regardless of environment
+  const headerContainerStyle = {
+    width: '100%',
+    maxWidth: '1200px',
+    margin: '0 auto',
+    ...style
+  };
+  
+  const headerTopStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    width: '100%',
+    padding: '32px 0',
+    margin: '0',
+    border: '0',
+  };
+  
+  const h1Style = {
+    fontSize: '48px',
+    fontWeight: 'bold',
+    lineHeight: '1.2',
+    padding: '0 0 8px 0',
+    margin: '0',
+    color: 'rgb(255, 0, 0)',
+    display: 'block',
+  };
+  
+  const pStyle = {
+    fontSize: '18px',
+    lineHeight: '1.2',
+    padding: '0',
+    margin: '0',
+    color: '#666',
+    display: 'block',
+  };
+  
+  const dividerStyle = {
+    height: '1px',
+    width: '100%',
+    backgroundColor: '#e0e0e0',
+    margin: '0',
+    padding: '0',
+    display: 'block',
+  };
+  
+  const h2Style = {
+    fontSize: '32px',
+    fontWeight: 'bold',
+    lineHeight: '1.2',
+    padding: '16px 0',
+    margin: '0',
+    textAlign: 'left',
+    display: 'block',
+  };
+
   return (
-    <FlexCol style={{ width: '100%', maxWidth: '1200px', margin: '0 auto', ...style }}>
-      <FlexCol
-        style={{
-          alignItems: 'flex-start',
-          width: '100%',
-          padding: '32px 16px',
-        }}
-      >
-        <h1
-          style={{
-            fontSize: '48px',
-            padding: '0 0 8px 0',
-            color: 'rgb(255, 0, 0)',
-            fontWeight: 'bold',
-          }}
-        >
+    <div style={headerContainerStyle}>
+      <div style={headerTopStyle}>
+        <h1 style={h1Style}>
           Simple Portfolio
         </h1>
-        <p style={{ 
-          fontSize: '18px', 
-          color: '#666',
-          marginTop: '8px',
-        }}>
+        <p style={pStyle}>
           A minimal demo project
         </p>
-      </FlexCol>
-      <div
-        style={{
-          height: '1px',
-          backgroundColor: '#e0e0e0',
-          margin: '0',
-          padding: '0',
-          width: '100%',
-        }}
-      />
+      </div>
+      
+      <div style={dividerStyle} />
+      
       {title && (
-        <h2
-          style={{
-            fontSize: '32px',
-            padding: '16px',
-            fontWeight: '600',
-            textAlign: 'left',
-          }}
-        >
+        <h2 style={h2Style}>
           {title}
         </h2>
       )}
-    </FlexCol>
+    </div>
   )
 }

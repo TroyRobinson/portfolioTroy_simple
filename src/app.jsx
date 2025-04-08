@@ -16,18 +16,31 @@ export const App = () => {
     style.setAttribute('data-app-styles', 'true');
     
     style.textContent = `
-      /* Reset all elements */
-      * {
+      /* Complete CSS Reset */
+      *, *::before, *::after {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
+        border: 0;
+        font: inherit;
+        vertical-align: baseline;
       }
       
       /* Document level settings */
-      html {
-        overflow-y: scroll;
-        scrollbar-gutter: stable;
-        font-size: 16px; /* Explicit base font size */
+      html, body {
+        height: 100%;
+        font-size: 16px;
+        line-height: 1;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      
+      /* Disable all container queries */
+      @container (*) {
+        * {
+          all: revert;
+        }
       }
       
       /* Base styles */
@@ -35,58 +48,95 @@ export const App = () => {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         background-color: #f9f9f9;
         color: #333;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
         width: 100%;
         min-height: 100vh;
-        padding: 0 16px; /* Add default padding */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-x: hidden;
       }
       
-      /* Typography reset */
-      h1, h2, h3, h4, h5, h6, p {
+      /* Typography base settings */
+      h1, h2, h3, h4, h5, h6, p, span, div {
+        display: block;
         line-height: 1.2;
         max-width: 100%;
         overflow-wrap: break-word;
       }
       
-      /* Headings */
-      h1 { font-size: 48px; font-weight: bold; }
-      h2 { font-size: 32px; font-weight: 600; }
-      h3 { font-size: 24px; font-weight: 600; }
+      /* Explicit typography styles */
+      h1 { 
+        font-size: 48px !important; 
+        font-weight: bold !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+      }
       
-      /* Paragraphs */
-      p { font-size: 16px; }
+      h2 { 
+        font-size: 32px !important; 
+        font-weight: 600 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+      }
       
-      /* Disable container queries effects */
-      .apptitle, [class*="title"] {
+      h3 { 
+        font-size: 24px !important; 
+        font-weight: 600 !important;
+      }
+      
+      p { 
+        font-size: 16px !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+      }
+      
+      /* Fully override any external title styling */
+      [class*="title"], .apptitle, .title {
+        all: unset;
+        display: block;
         font-size: inherit !important;
+        line-height: 1.2 !important;
       }
 
-      /* Layout classes */
+      /* Layout container */
       .container {
         width: 100%;
         max-width: 1200px;
-        margin: 0 auto;
         padding: 0 16px;
+        margin: 0 auto;
+        position: relative;
       }
       
-      /* Form elements */
+      /* Form elements reset */
       button, input, select, textarea {
         font-family: inherit;
         font-size: 100%;
         line-height: 1.2;
         color: inherit;
+        background: none;
       }
       
-      /* Lists */
+      /* Lists reset */
       ul, ol {
         list-style: none;
       }
       
-      /* Links */
+      /* Links reset */
       a {
         text-decoration: none;
         color: inherit;
+      }
+      
+      /* Tables reset */
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
       }
       
       /* Scrollbars */
@@ -107,14 +157,31 @@ export const App = () => {
         background-color: rgba(155, 155, 155, 0.5);
         border-radius: 20px;
       }
+      
+      /* Target and disable Utopia specific styling */
+      [class*="utopia"], [id*="utopia"], [class*="Utopia"], [id*="Utopia"] {
+        all: unset !important;
+        display: block;
+      }
+    `;
+    
+    // Attempt to disable any external stylesheets (globals.css)
+    const disableExternalStyles = document.createElement('style');
+    disableExternalStyles.setAttribute('data-disable-external', 'true');
+    disableExternalStyles.textContent = `
+      /* Attempt to disable external styles */
+      @import url('') !important;
+      @import "" !important;
     `;
     
     // Insert at the beginning of head to ensure highest priority
     document.head.insertBefore(style, document.head.firstChild);
+    document.head.insertBefore(disableExternalStyles, document.head.firstChild);
     
     // Return cleanup function
     return () => {
       document.head.removeChild(style);
+      document.head.removeChild(disableExternalStyles);
     };
   }, []);
 
