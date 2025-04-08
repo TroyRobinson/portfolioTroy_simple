@@ -8,34 +8,69 @@ import PortfolioPage from './pages/PortfolioPage.jsx';
 export const App = () => {
   // Apply global styles
   useEffect(() => {
+    // Remove any existing global styles that might be causing conflicts
+    const existingStyles = document.querySelectorAll('style[data-app-styles]');
+    existingStyles.forEach(styleEl => styleEl.remove());
+    
     const style = document.createElement('style');
+    style.setAttribute('data-app-styles', 'true');
     
     style.textContent = `
+      /* Reset all elements */
       * {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
       }
       
+      /* Document level settings */
       html {
         overflow-y: scroll;
         scrollbar-gutter: stable;
+        font-size: 16px; /* Explicit base font size */
       }
       
+      /* Base styles */
       body {
-        font-family: sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         background-color: #f9f9f9;
         color: #333;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        width: 100%;
+        min-height: 100vh;
+        padding: 0 16px; /* Add default padding */
       }
       
-      /* Reset text elements */
+      /* Typography reset */
       h1, h2, h3, h4, h5, h6, p {
         line-height: 1.2;
+        max-width: 100%;
+        overflow-wrap: break-word;
       }
       
-      /* Reset form elements */
+      /* Headings */
+      h1 { font-size: 48px; font-weight: bold; }
+      h2 { font-size: 32px; font-weight: 600; }
+      h3 { font-size: 24px; font-weight: 600; }
+      
+      /* Paragraphs */
+      p { font-size: 16px; }
+      
+      /* Disable container queries effects */
+      .apptitle, [class*="title"] {
+        font-size: inherit !important;
+      }
+
+      /* Layout classes */
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 16px;
+      }
+      
+      /* Form elements */
       button, input, select, textarea {
         font-family: inherit;
         font-size: 100%;
@@ -43,24 +78,23 @@ export const App = () => {
         color: inherit;
       }
       
-      /* Remove list styles */
+      /* Lists */
       ul, ol {
         list-style: none;
       }
       
-      /* Remove link styling */
+      /* Links */
       a {
         text-decoration: none;
         color: inherit;
       }
       
-      /* For Firefox */
+      /* Scrollbars */
       * {
         scrollbar-width: thin;
         scrollbar-color: rgba(155, 155, 155, 0.5) transparent;
       }
       
-      /* For Chrome/Safari/Edge */
       ::-webkit-scrollbar {
         width: 8px;
       }
@@ -75,7 +109,8 @@ export const App = () => {
       }
     `;
     
-    document.head.appendChild(style);
+    // Insert at the beginning of head to ensure highest priority
+    document.head.insertBefore(style, document.head.firstChild);
     
     // Return cleanup function
     return () => {
@@ -85,7 +120,9 @@ export const App = () => {
 
   return (
     <Router>
-      <AppContent />
+      <div className="container">
+        <AppContent />
+      </div>
     </Router>
   );
 };

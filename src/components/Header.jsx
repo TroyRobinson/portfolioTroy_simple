@@ -12,24 +12,29 @@ export const Header = ({
   style = {},
 }) => {
   return (
-    <FlexCol style={{ width: '100%', ...style }}>
+    <FlexCol style={{ width: '100%', maxWidth: '1200px', margin: '0 auto', ...style }}>
       <FlexCol
         style={{
           alignItems: 'flex-start',
           width: '100%',
-          padding: '36px 0px',
+          padding: '32px 16px',
         }}
       >
         <h1
           style={{
-            fontSize: '2.5rem',
+            fontSize: '48px',
             padding: '0 0 8px 0',
-            color: 'rgb(255, 0, 0, 1)',
+            color: 'rgb(255, 0, 0)',
+            fontWeight: 'bold',
           }}
         >
           Simple Portfolio
         </h1>
-        <p style={{ fontSize: '1.2rem', color: '#666' }}>
+        <p style={{ 
+          fontSize: '18px', 
+          color: '#666',
+          marginTop: '8px',
+        }}>
           A minimal demo project
         </p>
       </FlexCol>
@@ -37,15 +42,17 @@ export const Header = ({
         style={{
           height: '1px',
           backgroundColor: '#e0e0e0',
-          margin: '8px 0 16px 0',
+          margin: '0',
+          padding: '0',
           width: '100%',
         }}
       />
       {title && (
         <h2
           style={{
-            fontSize: '1.8rem',
-            padding: '16px 0',
+            fontSize: '32px',
+            padding: '16px',
+            fontWeight: '600',
             textAlign: 'left',
           }}
         >
