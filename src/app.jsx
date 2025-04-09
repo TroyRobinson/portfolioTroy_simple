@@ -16,7 +16,7 @@ export const App = () => {
     style.setAttribute('data-app-styles', 'true');
     
     style.textContent = `
-      /* Complete CSS Reset */
+      /* Basic CSS Reset */
       *, *::before, *::after {
         box-sizing: border-box;
         margin: 0;
@@ -26,7 +26,7 @@ export const App = () => {
         vertical-align: baseline;
       }
       
-      /* Document level settings */
+      /* Base document settings */
       html, body {
         height: 100%;
         font-size: 16px;
@@ -36,8 +36,19 @@ export const App = () => {
         -moz-osx-font-smoothing: grayscale;
       }
       
-      /* Normalize text element spacing */
-      /* Using more specific selectors to override Utopia styles */
+      /* 
+       * Text Element Spacing Normalization
+       * 
+       * Purpose: Ensure consistent text spacing across all environments
+       * 
+       * Why here instead of globals.css?
+       * 1. JavaScript injection gives higher CSS specificity
+       * 2. Guaranteed to load before component rendering
+       * 3. Runtime control over style application
+       * 4. Environment-independent behavior
+       * 
+       * Note: Font loading and responsive layout remain in globals.css
+       */
       body h1, 
       body h2, 
       body h3, 
@@ -67,7 +78,7 @@ export const App = () => {
         overflow-wrap: break-word;
       }
       
-      /* Disable all container queries */
+      /* Prevent container queries from affecting text spacing */
       @container (*) {
         * {
           all: revert;

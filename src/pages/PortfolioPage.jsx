@@ -1,6 +1,6 @@
 import React from 'react'
 import { FlexCol, FlexRow } from '../utils.jsx'
-import { Tag } from '../components/Tag.jsx'
+import { Tag } from '../components/primitives/Tag.jsx'
 import { Header } from '../components/Header.jsx'
 import { Link } from '../Router.jsx'
 
