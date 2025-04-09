@@ -1,0 +1,20 @@
+---
+description: When styling elements, using/updating themes, or building components or screens/pages.
+globs: 
+alwaysApply: false
+---
+# Strategy
+- Create components in /components
+- Create primitives in /components/primitives. Build primitives with Radix Primitives where able.
+- Use primitives to build the components. Use components to build the screens/pages in /pages
+- Avoid global styles, just make global components that are used throughout the app.
+
+# Styling Any Element
+- Always use inline style props e.g. style={{...}} for styling. 
+-- No styles via other JS props
+-- No JS objects for CSS
+-- No external CSS files except for universal, e.g. baseline resets, font families, brand accent color.
+--- Browser resets ~ margins, padding, box-sizing.
+--- Kep all global styles in globals.css which is inserted into app.js
+- Control spacing between elements using padding not margin or otherwise.
+- All spacing should be in 8px increments, or 4px only in small, compact areas.

@@ -3,13 +3,12 @@ description: When creating UI elements & also dealing with data (from InstantDB)
 globs: 
 alwaysApply: false
 ---
-- When creating components use placeholder data incase the data doesn't load, the template still does, e.g.:
-<h3>
-    {study.name || 'Untitled Study'}
-</h3>
+# Database
+## Our data is hosted on InstantDB, the real-time, local first database.
 
-- See: https://www.instantdb.com/llms-full.txt for InstantDB help.
-Note specifically: InstantDB Common Mistakes
+- Check existing, working examples in our database before deciding on your implementation. [PortfolioPage.jsx](mdc:src/pages/PortfolioPage.jsx)
+
+! Avoid these common mistakes:
 
 ## Common mistakes with schema
 
@@ -704,3 +703,7 @@ InstantDB does not provide built-in username/password authentication.
 ✅ **Correction**: Use Instant's magic code or OAuth flows instead in client-side code
 
 If you need traditional password-based authentication, you must implement it as a custom auth flow using the Admin SDK.
+
+
+More questions?
+Visit on the web: https://www.instantdb.com/llms-full.txt

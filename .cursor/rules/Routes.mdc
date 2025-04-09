@@ -1,0 +1,31 @@
+---
+description: When dealing with pages, routes, slugs, dynamic routes, etc.
+globs: 
+alwaysApply: false
+---
+We use Wouter for routing. 
+
+- Router is Optional - Unlike React Router, you don't need to wrap your app in a <Router> component to get started.
+
+- Simple Link Navigation - Use <Link href="/path"> components for navigation instead of regular <a> tags to prevent page refreshes.
+
+- Access Current Location - Use the useLocation() hook to get the current path and a navigation function: const [location, navigate] = useLocation().
+
+- Create Active Link Styles - Compare the current location to link paths to add active styling:
+jsxconst [location] = useLocation();
+const isActive = location === "/about";
+
+- Route Parameters - Access URL parameters through function children or the useRoute hook:
+jsx<Route path="/user/:id">
+  {params => <UserPage id={params.id} />}
+</Route>
+
+- Fallback Routes - Routes without paths always match, perfect for 404 pages:
+jsx<Switch>
+  <Route path="/home">...</Route>
+  <Route>Not Found</Route>
+</Switch>
+
+- Programmatic Navigation - Navigate without links using the navigate function:
+jsxconst [, navigate] = useLocation();
+const handleSubmit = () => navigate("/success");

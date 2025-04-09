@@ -1,0 +1,13 @@
+---
+description: When dealing with architectural decisions regaring styling, node, packages, environment.
+globs: 
+alwaysApply: false
+---
+# Background
+- Our app runs both locally (our dev setup & Vercel entry point) via the top level index.html
+- Our app also runs in the online Utopia react-as-the-source-of-truth IDE / design tools. Which has the entry point at public/index.html. 
+
+Note that Utopia has a strange, outdated build process that may render some NPM packages un-usable in their default form. We can get around this sometimes by using ESM.SH
+
+# Rule
+Ensure that however we set up the app, it runs the same in both places.
