@@ -14,7 +14,7 @@ const CaseStudyCard = ({ study, onDelete }) => {
   if (!study) {
     return null
   }
-  
+
   return (
     <div
       style={{
@@ -24,6 +24,7 @@ const CaseStudyCard = ({ study, onDelete }) => {
         backgroundColor: '#fafafa',
         display: 'flex',
         flexDirection: 'column',
+        minWidth: '550px',
         width: 'max-content',
         height: 'max-content',
         alignItems: 'flex-start',
@@ -84,14 +85,13 @@ const CaseStudyCard = ({ study, onDelete }) => {
         >
           Technologies
         </h4>
-        <FlexRow
-          style={{ flexWrap: 'wrap', gap: '5px' }}
-        >
-          {study.technologies && study.technologies
-            .split(',')
-            .map((tech, index) => (
-              <Tag key={index}>{tech.trim()}</Tag>
-            ))}
+        <FlexRow style={{ flexWrap: 'wrap', gap: '5px' }}>
+          {study.technologies &&
+            study.technologies
+              .split(',')
+              .map((tech, index) => (
+                <Tag key={index}>{tech.trim()}</Tag>
+              ))}
         </FlexRow>
       </FlexCol>
       <FlexRow
@@ -102,9 +102,13 @@ const CaseStudyCard = ({ study, onDelete }) => {
         }}
       >
         <Link
-          href={`/portfolio/${study.name ? study.name
-            .toLowerCase()
-            .replace(/\s+/g, '-') : 'untitled'}`}
+          href={`/portfolio/${
+            study.name
+              ? study.name
+                  .toLowerCase()
+                  .replace(/\s+/g, '-')
+              : 'untitled'
+          }`}
           style={{
             backgroundColor: '#2b6cb0',
             color: 'white',
@@ -138,4 +142,4 @@ const CaseStudyCard = ({ study, onDelete }) => {
   )
 }
 
-export default CaseStudyCard 
+export default CaseStudyCard
