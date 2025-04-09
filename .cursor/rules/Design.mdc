@@ -18,3 +18,17 @@ alwaysApply: false
 --- Kep all global styles in globals.css which is inserted into app.js
 - Control spacing between elements using padding not margin or otherwise.
 - All spacing should be in 8px increments, or 4px only in small, compact areas.
+
+#Element Positioning
+Utopia IDE Compatibility
+- Never use position: fixed, instead, use position: absolute within a position: relative parent container. Keep UI elements within their component's DOM hierarchy rather than trying to position them relative to the viewport because Utopia has it's own viewport system.
+-- This ensures that overlay modals, popups, and other positioned elements will work correctly in both Utopia's design environment and regular browser environments.
+
+
+
+
+
+
+
+
+

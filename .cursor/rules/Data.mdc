@@ -4,12 +4,19 @@ globs:
 alwaysApply: false
 ---
 # Database
-## Our data is hosted on InstantDB, the real-time, local first database.
+Our data is hosted on InstantDB, the real-time, local first database.
 
-- Check existing, working examples in our database before deciding on your implementation. [PortfolioPage.jsx](mdc:src/pages/PortfolioPage.jsx)
+## *Unique to our InstantDB codebase with @Utopia.mdc*:
+- ESM-based Loading: use import() to dynamically load InstantDB from ESM.sh CDN (e.g. https://esm.sh/@instantdb/core@0.17.31) rather than the typical NPM installation and static import.
+-- Using InstantDB Core instead of @instantdb/react or @instantdb/react-native
+-- Loading dependencies at runtime directly in the browser, requiring no build process or serverside component.
+- Extract required functions (init, i, id) from the imported module manually rather than using named imports.
+
+- Check existing, working examples in our database before deciding on your implementation. @PortfolioPage.jsx
+
+---
 
 ! Avoid these common mistakes:
-
 ## Common mistakes with schema
 
 ❌ **Common mistake**: Reusing the same label for different links
