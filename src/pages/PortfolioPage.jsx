@@ -757,6 +757,7 @@ const PortfolioPage = ({ style }) => {
                 height: 'max-content',
                 alignItems: 'flex-start',
                 justifyContent: 'flex-start',
+                minWidth: '550px',
                 gap: 11,
               }}
             >
