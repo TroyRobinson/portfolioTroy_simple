@@ -24,6 +24,7 @@ const CaseStudyCard = ({ study, onDelete }) => {
         backgroundColor: '#fafafa',
         display: 'flex',
         flexDirection: 'column',
+        minWidth: '550px',
         width: 'max-content',
         height: 'max-content',
         alignItems: 'flex-start',
@@ -57,16 +58,14 @@ const CaseStudyCard = ({ study, onDelete }) => {
           {study.date || ''}
         </span>
       </FlexRow>
-      {study.description && (
-        <p
-          style={{
-            padding: '0 0 15px 0',
-            lineHeight: '1.5',
-          }}
-        >
-          {study.description}
-        </p>
-      )}
+      <p
+        style={{
+          padding: '0 0 15px 0',
+          lineHeight: '1.5',
+        }}
+      >
+        {study.description || 'Missing Description'}
+      </p>
       <FlexCol
         style={{
           padding: '0px 0px -6px 0px',
