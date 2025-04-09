@@ -21,8 +21,7 @@ alwaysApply: false
 
 #Element Positioning
 Utopia IDE Compatibility
-- Never use position: fixed, instead, use position: absolute within a position: relative parent container. Keep UI elements within their component's DOM hierarchy rather than trying to position them relative to the viewport because Utopia has it's own viewport system.
--- This ensures that overlay modals, popups, and other positioned elements will work correctly in both Utopia's design environment and regular browser environments.
+- Never use position: fixed for whole screen areas like modals etc., instead, use position: absolute within a position: relative parent container. Keep UI elements within their component's DOM hierarchy rather than trying to position them relative to the viewport because Utopia has it's own viewport system.
 
 
 
