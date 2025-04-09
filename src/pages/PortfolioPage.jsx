@@ -471,10 +471,13 @@ const PortfolioPage = ({ style }) => {
         boxSizing: 'border-box',
         overflowX: 'hidden',
         alignItems: 'flex-start',
-        ...style
+        ...style,
       }}
     >
-      <Header title="Case Studies" />
+      <Header
+        title='Case Studies'
+        style={{ width: '100%' }}
+      />
       <FlexCol
         style={{
           padding: '20px',
@@ -746,8 +749,15 @@ const PortfolioPage = ({ style }) => {
               style={{
                 border: '1px solid #eee',
                 borderRadius: '8px',
-                padding: '20px',
+                padding: '21px 21px',
                 backgroundColor: '#fafafa',
+                display: 'flex',
+                flexDirection: 'column',
+                width: 'max-content',
+                height: 'max-content',
+                alignItems: 'flex-start',
+                justifyContent: 'flex-start',
+                gap: 11,
               }}
             >
               <FlexRow
@@ -755,6 +765,8 @@ const PortfolioPage = ({ style }) => {
                   justifyContent: 'space-between',
                   alignItems: 'flex-start',
                   padding: '0 0 10px 0',
+                  width: 507,
+                  height: 35,
                 }}
               >
                 <h3
@@ -784,7 +796,14 @@ const PortfolioPage = ({ style }) => {
                   {study.description}
                 </p>
               )}
-              <FlexCol style={{ padding: '0 0 15px 0' }}>
+              <FlexCol
+                style={{
+                  padding: '0px 0px -6px 0px',
+                  gap: 8,
+                  width: 507,
+                  height: 56.5,
+                }}
+              >
                 <h4
                   style={{
                     fontSize: '0.9rem',
@@ -804,7 +823,13 @@ const PortfolioPage = ({ style }) => {
                     ))}
                 </FlexRow>
               </FlexCol>
-              <FlexRow style={{ gap: '10px' }}>
+              <FlexRow
+                style={{
+                  gap: '10px',
+                  width: 507,
+                  height: 25,
+                }}
+              >
                 <Link
                   href={`/portfolio/${study.name
                     .toLowerCase()

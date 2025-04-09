@@ -23,11 +23,31 @@ export var storyboard = (
     >
       <>
         {/* Simplified App preview for storyboard */}
-        <div style={{ padding: '20px', height: '100%', overflow: 'auto' }}>
-          <div style={{ border: '1px dashed #ccc', padding: '15px', borderRadius: '4px', marginBottom: '15px' }}>
-            <h3 style={{ margin: '0 0 10px 0' }}>App Component</h3>
-            <p style={{ margin: '0 0 10px 0' }}>This component contains a Router with the following routes:</p>
-            <ul style={{ margin: '0', paddingLeft: '20px' }}>
+        <div
+          style={{
+            padding: '20px',
+            height: '100%',
+            overflow: 'auto',
+          }}
+        >
+          <div
+            style={{
+              border: '1px dashed #ccc',
+              padding: '15px',
+              borderRadius: '4px',
+              marginBottom: '15px',
+            }}
+          >
+            <h3 style={{ margin: '0 0 10px 0' }}>
+              App Component
+            </h3>
+            <p style={{ margin: '0 0 10px 0' }}>
+              This component contains a Router with the
+              following routes:
+            </p>
+            <ul
+              style={{ margin: '0', paddingLeft: '20px' }}
+            >
               <li>/ → AboutPage</li>
               <li>/portfolio → PortfolioPage</li>
               <li>/portfolio/:slug → CaseStudyDetail</li>
@@ -85,7 +105,7 @@ export var storyboard = (
       id='portfoliopage-scene'
       commentId='portfoliopage-scene'
       style={{
-        width: 700,
+        width: 629,
         height: 700,
         position: 'absolute',
         left: 1808,
@@ -107,9 +127,7 @@ export var storyboard = (
       }}
       data-label='Playground'
     >
-      <Playground style={{}}>
-        Playground Content
-      </Playground>
+      <Playground style={{}}>Playground Content</Playground>
     </Scene>
   </Storyboard>
 )
