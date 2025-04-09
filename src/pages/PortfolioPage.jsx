@@ -97,6 +97,7 @@ const PortfolioPage = ({ style = {} }) => {
         boxSizing: 'border-box',
         overflowX: 'hidden',
         alignItems: 'flex-start',
+        position: 'relative',
         ...style,
       }}
     >
@@ -155,7 +156,7 @@ const PortfolioPage = ({ style = {} }) => {
         {dialogOpen && (
           <div
             style={{
-              position: 'fixed',
+              position: 'absolute',
               top: 0,
               left: 0,
               right: 0,
