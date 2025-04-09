@@ -10,6 +10,11 @@ import { Link } from '../Router.jsx'
  * @param {Function} props.onDelete - Function to call when delete button is clicked
  */
 const CaseStudyCard = ({ study, onDelete }) => {
+  // Guard against undefined study
+  if (!study) {
+    return null
+  }
+  
   return (
     <div
       style={{
@@ -41,7 +46,7 @@ const CaseStudyCard = ({ study, onDelete }) => {
             padding: '0',
           }}
         >
-          {study.name}
+          {study.name || 'Untitled Study'}
         </h3>
         <span
           style={{
@@ -49,7 +54,7 @@ const CaseStudyCard = ({ study, onDelete }) => {
             fontSize: '0.9rem',
           }}
         >
-          {study.date}
+          {study.date || ''}
         </span>
       </FlexRow>
       {study.description && (
@@ -82,7 +87,7 @@ const CaseStudyCard = ({ study, onDelete }) => {
         <FlexRow
           style={{ flexWrap: 'wrap', gap: '5px' }}
         >
-          {study.technologies
+          {study.technologies && study.technologies
             .split(',')
             .map((tech, index) => (
               <Tag key={index}>{tech.trim()}</Tag>
@@ -97,9 +102,9 @@ const CaseStudyCard = ({ study, onDelete }) => {
         }}
       >
         <Link
-          href={`/portfolio/${study.name
+          href={`/portfolio/${study.name ? study.name
             .toLowerCase()
-            .replace(/\s+/g, '-')}`}
+            .replace(/\s+/g, '-') : 'untitled'}`}
           style={{
             backgroundColor: '#2b6cb0',
             color: 'white',
