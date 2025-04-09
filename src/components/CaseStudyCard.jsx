@@ -24,7 +24,6 @@ const CaseStudyCard = ({ study, onDelete }) => {
         backgroundColor: '#fafafa',
         display: 'flex',
         flexDirection: 'column',
-        minWidth: '550px',
         width: 'max-content',
         height: 'max-content',
         alignItems: 'flex-start',
