@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Router, Route, Switch } from './Router.jsx';
 import PortfolioPage from './pages/PortfolioPage.jsx';
+import AboutPage from './pages/AboutPage.jsx';
 
 /**
  * Main application component with global styles
@@ -42,7 +43,7 @@ export const App = () => {
         background-color: #f9f9f9;
         color: #333;
         width: 100%;
-        min-width: 320px;
+        min-width: 820px;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
@@ -82,6 +83,7 @@ export const App = () => {
       <div style={{
         width: '100%',
         maxWidth: '1200px',
+        minWidth: '800px',
         margin: '0 auto',
         padding: '0 16px',
         boxSizing: 'border-box',
@@ -93,11 +95,14 @@ export const App = () => {
 };
 
 /**
- * App routing configuration - simplified to only show PortfolioPage
+ * App routing configuration with Portfolio and About pages
  */
 const AppContent = () => {
   return (
     <Switch>
+      <Route path="/about">
+        {() => <AboutPage />}
+      </Route>
       <Route path="/">
         {() => <PortfolioPage />}
       </Route>

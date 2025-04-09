@@ -1,20 +1,24 @@
 import React from 'react';
 
 /**
- * Tag component for displaying labels/categories
+ * Tag component for displaying labels, technologies, etc.
  */
-export const Tag = ({ children, style = {} }) => (
-  <span
-    style={{
-      backgroundColor: '#f0f0f0',
-      color: '#333',
-      padding: '4px 8px',
-      borderRadius: '4px',
-      fontSize: '0.8rem',
-      display: 'inline-block',
-      ...style
-    }}
-  >
-    {children}
-  </span>
-); 
+export const Tag = ({ children, style = {}, ...props }) => {
+  return (
+    <div
+      style={{
+        display: 'inline-block',
+        padding: '2px 4px',
+        backgroundColor: '#fff',
+        border: '1px solid #000',
+        color: '#000',
+        fontSize: '10px',
+        fontFamily: 'Chicago, Monaco, monospace',
+        ...style,
+      }}
+      {...props}
+    >
+      {children}
+    </div>
+  )
+} 

@@ -10,15 +10,18 @@ export const Button = ({ children, onClick = () => {}, style = {}, ...props }) =
       onClick={onClick}
       style={{
         width: 'auto',
-        minWidth: '120px',
-        height: '40px',
-        backgroundColor: '#2b6cb0',
-        color: 'white',
-        border: 'none',
-        borderRadius: '4px',
-        padding: '8px 16px',
+        minWidth: '80px',
+        height: 'auto',
+        backgroundColor: '#e8e8e8',
+        color: '#000',
+        border: '1px solid #000',
+        borderRadius: '0',
+        padding: '4px 8px',
         cursor: 'pointer',
-        fontWeight: 'bold',
+        fontWeight: 'normal',
+        fontSize: '12px',
+        fontFamily: 'Chicago, Monaco, monospace',
+        boxShadow: '1px 1px 0px #000',
         ...style
       }}
       {...props}

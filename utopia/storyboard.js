@@ -13,6 +13,7 @@ import { TwoColumnGrid } from '../src/components/primitives/FlexLayout'
 import { ThreeColumnGrid } from '../src/components/primitives/FlexLayout'
 import { Link } from '../src/components/primitives/Link'
 import { Tag } from '../src/components/primitives/Tag'
+import AboutPage from '../src/pages/AboutPage'
 import PortfolioPage from '../src/pages/PortfolioPage'
 import { Playground } from '../src/playground'
 
@@ -215,6 +216,20 @@ export var storyboard = (
       data-label='Tag'
     >
       <Tag>Tag label</Tag>
+    </Scene>
+    <Scene
+      id='aboutpage-scene'
+      commentId='aboutpage-scene'
+      style={{
+        width: 700,
+        height: 700,
+        position: 'absolute',
+        left: 2624,
+        top: 128,
+      }}
+      data-label='AboutPage'
+    >
+      <AboutPage style={{}} />
     </Scene>
     <Scene
       id='portfoliopage-scene'

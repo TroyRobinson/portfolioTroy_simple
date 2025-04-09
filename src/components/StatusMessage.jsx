@@ -14,14 +14,15 @@ const StatusMessage = ({ status, error, isLoading }) => {
       {status && (
         <div
           style={{
-            fontSize: '0.9rem',
-            color: '#4a5568',
-            backgroundColor: '#edf2f7',
-            padding: '5px 10px',
-            borderRadius: '4px',
-            marginTop: '5px',
+            fontSize: '12px',
+            color: '#000',
+            backgroundColor: '#fff',
+            padding: '4px 8px',
+            border: '1px solid #000',
+            marginTop: '4px',
             display: 'flex',
             alignItems: 'center',
+            fontFamily: 'Chicago, Monaco, monospace',
           }}
         >
           {isLoading && <Spinner />}
@@ -31,12 +32,13 @@ const StatusMessage = ({ status, error, isLoading }) => {
       {error && (
         <div
           style={{
-            color: 'red',
-            backgroundColor: '#ffeeee',
-            padding: '10px',
-            border: '1px solid #ffcccc',
-            borderRadius: '4px',
-            marginBottom: '15px',
+            color: '#000',
+            backgroundColor: '#fff',
+            padding: '4px 8px',
+            border: '1px solid #000',
+            marginBottom: '8px',
+            fontFamily: 'Chicago, Monaco, monospace',
+            fontSize: '12px',
           }}
         >
           Error: {error}

@@ -22,32 +22,107 @@ const PulseAnimation = () => (
 // Skeleton component for loading state
 const SkeletonCard = () => (
   <div style={{
-    backgroundColor: '#f5f5f5',
-    borderRadius: '8px',
-    padding: '16px',
+    backgroundColor: '#e8e8e8',
+    border: '1px solid #000',
+    padding: '8px',
     width: '100%',
-    boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
     animation: 'pulse 1.5s infinite',
   }}>
     <div style={{ 
       height: '24px', 
       width: '40%', 
-      backgroundColor: '#e0e0e0', 
+      backgroundColor: '#c0c0c0', 
       marginBottom: '8px',
-      borderRadius: '4px',
+      border: '1px solid #000',
     }} />
     <div style={{ 
       height: '80px', 
       width: '100%', 
-      backgroundColor: '#e0e0e0',
+      backgroundColor: '#c0c0c0',
       marginBottom: '8px',
-      borderRadius: '4px',
+      border: '1px solid #000',
     }} />
     <div style={{ 
       height: '20px', 
       width: '60%', 
-      backgroundColor: '#e0e0e0',
-      borderRadius: '4px',
+      backgroundColor: '#c0c0c0',
+      border: '1px solid #000',
+    }} />
+  </div>
+)
+
+// Classic Mac-style title bar component
+const MacTitleBar = ({ title }) => (
+  <div style={{
+    backgroundColor: '#fff',
+    color: '#000',
+    padding: '4px 8px',
+    width: '100%',
+    textAlign: 'center',
+    fontFamily: 'Chicago, Monaco, monospace',
+    fontSize: '14px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    boxSizing: 'border-box',
+    borderBottom: '1px solid #000',
+  }}>
+    <div style={{ 
+      width: '12px', 
+      height: '12px', 
+      border: '1px solid #000',
+      borderRadius: '0',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}>
+      <div style={{
+        width: '6px',
+        height: '6px',
+        backgroundColor: '#000',
+      }} />
+    </div>
+    <span>{title}</span>
+    <div style={{ width: '12px' }} />
+  </div>
+)
+
+// Classic Mac scrollbar component
+const MacScrollbar = ({ height = '100%' }) => (
+  <div style={{
+    width: '16px',
+    height,
+    backgroundColor: '#e8e8e8',
+    border: '1px solid #000',
+    borderLeft: 'none',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    paddingTop: '4px',
+    paddingBottom: '4px',
+  }}>
+    <div style={{
+      width: '12px',
+      height: '12px',
+      borderLeft: '6px solid transparent',
+      borderRight: '6px solid transparent',
+      borderBottom: '8px solid #000',
+      marginBottom: '4px',
+    }} />
+    <div style={{
+      width: '12px',
+      height: '40px',
+      backgroundColor: '#fff',
+      border: '1px solid #000',
+      margin: '8px 0',
+    }} />
+    <div style={{
+      width: '12px',
+      height: '12px',
+      borderLeft: '6px solid transparent',
+      borderRight: '6px solid transparent',
+      borderTop: '8px solid #000',
+      marginTop: '4px',
     }} />
   </div>
 )
@@ -92,103 +167,167 @@ const PortfolioPage = ({ style = {} }) => {
       style={{
         width: '100%',
         maxWidth: '1200px',
+        minWidth: '800px',
         minHeight: '100vh',
         padding: '16px',
         boxSizing: 'border-box',
         overflowX: 'hidden',
         alignItems: 'flex-start',
         position: 'relative',
+        fontFamily: 'Chicago, Monaco, monospace',
+        color: '#000',
+        backgroundColor: '#e8e8e8',
         ...style,
       }}
     >
       <PulseAnimation />
       <Header
         title='Case Studies'
-        style={{ width: '100%' }}
+        style={{ width: '100%', marginBottom: '16px' }}
       />
+      
       <FlexCol
         style={{
-          padding: '16px',
-          backgroundColor: 'white',
-          borderRadius: '8px',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+          border: '2px solid #000',
+          backgroundColor: '#e8e8e8',
           width: '100%',
+          boxShadow: '2px 2px 0px #000',
         }}
       >
-        <FlexRow
-          style={{
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            padding: '0 0 16px 0',
-            width: '100%',
-          }}
-        >
-          <FlexCol style={{ gap: '8px' }}>
-            <div
-              style={{ fontSize: '0.9rem', color: '#666' }}
-            >
-              {loading ? (
-                <>
-                  <Spinner /> Loading...
-                </>
-              ) : (
-                `${caseStudies.length} case studies loaded`
-              )}
-            </div>
-            <StatusMessage 
-              status={status} 
-              error={error}
-              isLoading={isClearing} 
-            />
-          </FlexCol>
-          <Button
-            onClick={() => setDialogOpen(true)}
-            style={{
-              opacity: isClearing || loading ? 0.7 : 1,
-              cursor: isClearing || loading ? 'not-allowed' : 'pointer',
-            }}
-          >
-            Add New Case Study
-          </Button>
-        </FlexRow>
+        <MacTitleBar title="Case Studies" />
         
-        {/* Add New Case Study Modal */}
-        {dialogOpen && (
-          <div
+        <FlexRow style={{ width: '100%' }}>
+          <FlexCol
             style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              backgroundColor: 'rgba(0, 0, 0, 0.5)',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              zIndex: 1000,
+              padding: '8px',
+              width: '100%',
+              maxHeight: '600px',
+              overflow: 'auto',
             }}
           >
-            <div
+            <FlexRow
               style={{
-                backgroundColor: 'white',
-                borderRadius: '8px',
-                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.12)',
-                width: '90%',
-                maxWidth: '500px',
-                padding: '16px',
-                maxHeight: '85vh',
-                overflowY: 'auto',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                padding: '0 0 16px 0',
+                width: '100%',
+                borderBottom: '1px solid #888',
               }}
             >
-              <h3
+              <FlexCol style={{ gap: '8px' }}>
+                <div
+                  style={{ fontSize: '12px', color: '#000' }}
+                >
+                  {loading ? (
+                    <>
+                      <Spinner /> Loading...
+                    </>
+                  ) : (
+                    `${caseStudies.length} case studies loaded`
+                  )}
+                </div>
+                <StatusMessage 
+                  status={status} 
+                  error={error}
+                  isLoading={isClearing} 
+                />
+              </FlexCol>
+              <Button
+                onClick={() => setDialogOpen(true)}
                 style={{
-                  fontSize: '1.5rem',
-                  fontWeight: 'bold',
-                  padding: '0 0 16px 0',
+                  opacity: isClearing || loading ? 0.7 : 1,
+                  cursor: isClearing || loading ? 'not-allowed' : 'pointer',
+                  backgroundColor: '#e8e8e8',
+                  border: '1px solid #000',
+                  borderRadius: '0px',
+                  color: '#000',
+                  padding: '4px 8px',
+                  fontFamily: 'Chicago, Monaco, monospace',
+                  fontSize: '12px',
+                  boxShadow: '1px 1px 0px #000',
                 }}
               >
-                New Case Study
-              </h3>
+                Add New Case Study
+              </Button>
+            </FlexRow>
+            
+            {!loading &&
+              !error &&
+              caseStudies.length === 0 && (
+                <div
+                  style={{ padding: '16px 0', color: '#000' }}
+                >
+                  No case studies yet. Add your first one!
+                </div>
+              )}
+              
+            {/* Case Studies List */}
+            <FlexCol style={{ gap: '8px', width: '100%', marginTop: '8px' }}>
+              {loading ? (
+                // Show skeleton placeholders while loading
+                [...Array(skeletonCount)].map((_, index) => (
+                  <SkeletonCard key={`skeleton-${index}`} />
+                ))
+              ) : (
+                caseStudies.map((study) => (
+                  <CaseStudyCard 
+                    key={study.id} 
+                    study={study} 
+                    onDelete={deleteCaseStudy} 
+                  />
+                ))
+              )}
+            </FlexCol>
+          </FlexCol>
+          
+          <MacScrollbar height="600px" />
+        </FlexRow>
+
+        {/* Bottom status bar */}
+        <div style={{
+          backgroundColor: '#fff',
+          borderTop: '1px solid #000',
+          padding: '4px 8px',
+          width: '100%',
+          fontSize: '10px',
+          fontFamily: 'Chicago, Monaco, monospace',
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}>
+          <span>{caseStudies.length} items</span>
+          <span>1549K available</span>
+        </div>
+      </FlexCol>
+      
+      {/* Add New Case Study Modal */}
+      {dialogOpen && (
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            zIndex: 1000,
+          }}
+        >
+          <div
+            style={{
+              backgroundColor: '#e8e8e8',
+              border: '2px solid #000',
+              boxShadow: '4px 4px 0px #000',
+              width: '90%',
+              maxWidth: '500px',
+              maxHeight: '85vh',
+              overflowY: 'auto',
+            }}
+          >
+            <MacTitleBar title="New Case Study" />
+            <div style={{ padding: '8px' }}>
               <CaseStudyForm 
                 initialValues={newCaseStudy}
                 onSubmit={handleAddCaseStudy} 
@@ -196,36 +335,8 @@ const PortfolioPage = ({ style = {} }) => {
               />
             </div>
           </div>
-        )}
-        
-        {!loading &&
-          !error &&
-          caseStudies.length === 0 && (
-            <div
-              style={{ padding: '16px 0', color: '#666' }}
-            >
-              No case studies yet. Add your first one!
-            </div>
-          )}
-          
-        {/* Case Studies List */}
-        <FlexCol style={{ gap: '16px', width: '100%' }}>
-          {loading ? (
-            // Show skeleton placeholders while loading
-            [...Array(skeletonCount)].map((_, index) => (
-              <SkeletonCard key={`skeleton-${index}`} />
-            ))
-          ) : (
-            caseStudies.map((study) => (
-              <CaseStudyCard 
-                key={study.id} 
-                study={study} 
-                onDelete={deleteCaseStudy} 
-              />
-            ))
-          )}
-        </FlexCol>
-      </FlexCol>
+        </div>
+      )}
     </FlexCol>
   )
 }

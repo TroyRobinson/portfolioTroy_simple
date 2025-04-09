@@ -7,19 +7,21 @@ const Spinner = () => (
   <div
     style={{
       display: 'inline-block',
-      width: '20px',
-      height: '20px',
-      border: '3px solid rgba(0, 0, 0, 0.1)',
-      borderRadius: '50%',
-      borderTopColor: '#333',
-      animation: 'spin 1s ease-in-out infinite',
-      marginRight: '8px',
+      width: '16px',
+      height: '16px',
+      border: '2px solid #000',
+      borderRadius: '0',
+      animation: 'spin 1s steps(4) infinite',
+      marginRight: '4px',
       verticalAlign: 'middle',
+      backgroundColor: '#e8e8e8',
     }}
   >
     <style>{`
       @keyframes spin {
-        to { transform: rotate(360deg); }
+        0% { background-color: #000; }
+        50% { background-color: #e8e8e8; }
+        100% { background-color: #000; }
       }
     `}</style>
   </div>

@@ -10,16 +10,32 @@
  */
 
 body, #canvas-container * {
-    font-family: San Francisco, SF UI, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: Chicago, Monaco, monospace, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    background-color: #e8e8e8;
 }
 
 @font-face {
-    font-family: 'ITC Garamond ';
+    font-family: 'Chicago';
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: local(ITC Garamond ) format('ttf');
-  }
+    src: url('https://www.1001fonts.com/download/font/chicago.regular.ttf') format('truetype');
+}
+
+/* Classic Mac pixel pattern background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAEklEQVQImWNgYGD4z0AswK4SAFXuAf8EPy+xAAAAAElFTkSuQmCC");
+    background-repeat: repeat;
+    opacity: 0.03;
+    z-index: -1;
+    pointer-events: none;
+}
 
 /* Normalize text element spacing in CSS */
 body h1, 
@@ -46,6 +62,36 @@ body p,
     border: none !important;
 }
 
+/* Classic Mac UI button hover and active states */
+button:hover {
+    background-color: #000 !important;
+    color: #fff !important;
+}
+
+button:active {
+    background-color: #000 !important;
+    color: #fff !important;
+    transform: translate(1px, 1px) !important;
+    box-shadow: none !important;
+}
+
+/* Mac-specific input styles */
+input, textarea, select {
+    background-color: #fff !important;
+    border: 1px solid #000 !important;
+    border-radius: 0 !important;
+    padding: 4px !important;
+    font-family: Chicago, Monaco, monospace !important;
+    font-size: 12px !important;
+    color: #000 !important;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none !important;
+    border: 2px solid #000 !important;
+    padding: 3px !important;
+}
+
 /* Fix vertical alignment of text elements */
 h1::before, h1::after,
 h2::before, h2::after,
@@ -67,7 +113,7 @@ p::before, p::after {
 
 @container (min-width: 700px) {
     .apptitle {
-        font-size: 3.5em;
+        font-size: 2em;
     }
 
     .listcard {

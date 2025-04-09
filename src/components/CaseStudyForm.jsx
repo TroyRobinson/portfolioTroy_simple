@@ -30,17 +30,31 @@ const CaseStudyForm = ({ initialValues = {}, onSubmit, onCancel }) => {
     }
   }
 
+  // Common styles for form inputs
+  const inputStyle = {
+    padding: '4px',
+    border: '1px solid #000',
+    borderRadius: '0',
+    backgroundColor: '#fff',
+    fontFamily: 'Chicago, Monaco, monospace',
+    fontSize: '12px',
+  }
+
   return (
     <form onSubmit={handleSubmit}>
-      <FlexCol style={{ gap: '16px' }}>
+      <FlexCol style={{ gap: '12px' }}>
         <label
           style={{
             display: 'flex',
             flexDirection: 'column',
-            gap: '8px',
+            gap: '4px',
+            fontFamily: 'Chicago, Monaco, monospace',
           }}
         >
-          <span style={{ fontWeight: 'bold' }}>
+          <span style={{ 
+            fontWeight: 'bold',
+            fontSize: '12px',
+          }}>
             Project Name
           </span>
           <input
@@ -49,21 +63,21 @@ const CaseStudyForm = ({ initialValues = {}, onSubmit, onCancel }) => {
             value={formData.name}
             onChange={handleInputChange}
             required
-            style={{
-              padding: '8px',
-              border: '1px solid #ddd',
-              borderRadius: '4px',
-            }}
+            style={inputStyle}
           />
         </label>
         <label
           style={{
             display: 'flex',
             flexDirection: 'column',
-            gap: '8px',
+            gap: '4px',
+            fontFamily: 'Chicago, Monaco, monospace',
           }}
         >
-          <span style={{ fontWeight: 'bold' }}>
+          <span style={{ 
+            fontWeight: 'bold',
+            fontSize: '12px',
+          }}>
             Description
           </span>
           <textarea
@@ -72,9 +86,7 @@ const CaseStudyForm = ({ initialValues = {}, onSubmit, onCancel }) => {
             onChange={handleInputChange}
             rows={3}
             style={{
-              padding: '8px',
-              border: '1px solid #ddd',
-              borderRadius: '4px',
+              ...inputStyle,
               resize: 'vertical',
             }}
           />
@@ -83,10 +95,14 @@ const CaseStudyForm = ({ initialValues = {}, onSubmit, onCancel }) => {
           style={{
             display: 'flex',
             flexDirection: 'column',
-            gap: '8px',
+            gap: '4px',
+            fontFamily: 'Chicago, Monaco, monospace',
           }}
         >
-          <span style={{ fontWeight: 'bold' }}>
+          <span style={{ 
+            fontWeight: 'bold',
+            fontSize: '12px',
+          }}>
             Technologies (comma separated)
           </span>
           <input
@@ -96,21 +112,21 @@ const CaseStudyForm = ({ initialValues = {}, onSubmit, onCancel }) => {
             onChange={handleInputChange}
             required
             placeholder='React, Node.js, GraphQL'
-            style={{
-              padding: '8px',
-              border: '1px solid #ddd',
-              borderRadius: '4px',
-            }}
+            style={inputStyle}
           />
         </label>
         <label
           style={{
             display: 'flex',
             flexDirection: 'column',
-            gap: '8px',
+            gap: '4px',
+            fontFamily: 'Chicago, Monaco, monospace',
           }}
         >
-          <span style={{ fontWeight: 'bold' }}>
+          <span style={{ 
+            fontWeight: 'bold',
+            fontSize: '12px',
+          }}>
             Date
           </span>
           <input
@@ -118,11 +134,7 @@ const CaseStudyForm = ({ initialValues = {}, onSubmit, onCancel }) => {
             name='date'
             value={formData.date}
             onChange={handleInputChange}
-            style={{
-              padding: '8px',
-              border: '1px solid #ddd',
-              borderRadius: '4px',
-            }}
+            style={inputStyle}
           />
         </label>
         <FlexRow
@@ -133,16 +145,32 @@ const CaseStudyForm = ({ initialValues = {}, onSubmit, onCancel }) => {
           }}
         >
           <Button
-            onClick={onCancel}
+            onClick={(e) => onCancel && onCancel(e)}
             style={{
-              backgroundColor: '#f3f4f6',
-              color: '#333',
+              backgroundColor: '#e8e8e8',
+              border: '1px solid #000',
+              borderRadius: '0',
+              color: '#000',
+              padding: '4px 8px',
+              fontSize: '12px',
+              fontFamily: 'Chicago, Monaco, monospace',
+              boxShadow: '1px 1px 0px #000',
             }}
           >
             Cancel
           </Button>
           <Button
             type='submit'
+            style={{
+              backgroundColor: '#e8e8e8',
+              border: '1px solid #000',
+              borderRadius: '0',
+              color: '#000',
+              padding: '4px 8px',
+              fontSize: '12px',
+              fontFamily: 'Chicago, Monaco, monospace',
+              boxShadow: '1px 1px 0px #000',
+            }}
           >
             Add Case Study
           </Button>
