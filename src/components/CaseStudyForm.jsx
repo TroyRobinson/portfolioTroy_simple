@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { FlexCol, FlexRow } from '../utils.jsx'
+import { FlexCol, FlexRow } from './primitives/FlexLayout.jsx'
+import { Button } from './primitives/Button.jsx'
 
 /**
  * Form component for adding or editing case studies
@@ -31,12 +32,12 @@ const CaseStudyForm = ({ initialValues = {}, onSubmit, onCancel }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <FlexCol style={{ gap: '15px' }}>
+      <FlexCol style={{ gap: '16px' }}>
         <label
           style={{
             display: 'flex',
             flexDirection: 'column',
-            gap: '5px',
+            gap: '8px',
           }}
         >
           <span style={{ fontWeight: 'bold' }}>
@@ -49,7 +50,7 @@ const CaseStudyForm = ({ initialValues = {}, onSubmit, onCancel }) => {
             onChange={handleInputChange}
             required
             style={{
-              padding: '10px',
+              padding: '8px',
               border: '1px solid #ddd',
               borderRadius: '4px',
             }}
@@ -59,7 +60,7 @@ const CaseStudyForm = ({ initialValues = {}, onSubmit, onCancel }) => {
           style={{
             display: 'flex',
             flexDirection: 'column',
-            gap: '5px',
+            gap: '8px',
           }}
         >
           <span style={{ fontWeight: 'bold' }}>
@@ -71,7 +72,7 @@ const CaseStudyForm = ({ initialValues = {}, onSubmit, onCancel }) => {
             onChange={handleInputChange}
             rows={3}
             style={{
-              padding: '10px',
+              padding: '8px',
               border: '1px solid #ddd',
               borderRadius: '4px',
               resize: 'vertical',
@@ -82,7 +83,7 @@ const CaseStudyForm = ({ initialValues = {}, onSubmit, onCancel }) => {
           style={{
             display: 'flex',
             flexDirection: 'column',
-            gap: '5px',
+            gap: '8px',
           }}
         >
           <span style={{ fontWeight: 'bold' }}>
@@ -96,7 +97,7 @@ const CaseStudyForm = ({ initialValues = {}, onSubmit, onCancel }) => {
             required
             placeholder='React, Node.js, GraphQL'
             style={{
-              padding: '10px',
+              padding: '8px',
               border: '1px solid #ddd',
               borderRadius: '4px',
             }}
@@ -106,7 +107,7 @@ const CaseStudyForm = ({ initialValues = {}, onSubmit, onCancel }) => {
           style={{
             display: 'flex',
             flexDirection: 'column',
-            gap: '5px',
+            gap: '8px',
           }}
         >
           <span style={{ fontWeight: 'bold' }}>
@@ -118,7 +119,7 @@ const CaseStudyForm = ({ initialValues = {}, onSubmit, onCancel }) => {
             value={formData.date}
             onChange={handleInputChange}
             style={{
-              padding: '10px',
+              padding: '8px',
               border: '1px solid #ddd',
               borderRadius: '4px',
             }}
@@ -127,37 +128,24 @@ const CaseStudyForm = ({ initialValues = {}, onSubmit, onCancel }) => {
         <FlexRow
           style={{
             justifyContent: 'flex-end',
-            gap: '10px',
-            padding: '10px 0 0 0',
+            gap: '8px',
+            padding: '8px 0 0 0',
           }}
         >
-          <button
-            type='button'
+          <Button
             onClick={onCancel}
             style={{
-              padding: '10px 15px',
               backgroundColor: '#f3f4f6',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: 'pointer',
+              color: '#333',
             }}
           >
             Cancel
-          </button>
-          <button
+          </Button>
+          <Button
             type='submit'
-            style={{
-              padding: '10px 15px',
-              backgroundColor: '#2b6cb0',
-              color: 'white',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: 'pointer',
-              fontWeight: 'bold',
-            }}
           >
             Add Case Study
-          </button>
+          </Button>
         </FlexRow>
       </FlexCol>
     </form>
