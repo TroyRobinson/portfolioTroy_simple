@@ -1,10 +1,9 @@
 import React from 'react';
 
-export const Button = ({ children, onClick, style, type, ...props }) => {
+export const Button = ({ children, onClick = () => {}, style = {}, ...props }) => {
   return (
     <button
       onClick={onClick}
-      type={type || 'button'}
       style={{
         width: 'auto',
         minWidth: '120px',

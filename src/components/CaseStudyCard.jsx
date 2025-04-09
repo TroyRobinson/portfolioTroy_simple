@@ -105,6 +105,9 @@ const CaseStudyCard = ({ study, onDelete }) => {
                   .replace(/\s+/g, '-')
               : 'untitled'
           }`}
+          buttonStyle={{
+            fontSize: '0.8rem',
+          }}
         >
           View Details
         </Link>

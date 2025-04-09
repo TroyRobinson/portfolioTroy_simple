@@ -1,31 +1,29 @@
 import React from 'react'
 import { Link as RouterLink } from '../../Router.jsx'
+import { Button } from './Button.jsx'
 
-export const Link = ({ children, href, style = {}, ...props }) => {
+export const Link = ({ children, href, style = {}, buttonStyle = {}, ...props }) => {
   return (
     <RouterLink
       href={href}
       style={{
-        width: 'auto',
-        minWidth: '120px',
-        height: '40px',
-        backgroundColor: '#2b6cb0',
-        color: 'white',
-        padding: '8px 16px',
-        borderRadius: '4px',
-        border: 'none',
-        cursor: 'pointer',
-        fontSize: '0.8rem',
         textDecoration: 'none',
-        display: 'inline-flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontWeight: 'bold',
+        display: 'inline-block',
         ...style
       }}
       {...props}
     >
-      {children}
+      <Button
+        onClick={() => {}}
+        type="button"
+        style={{
+          width: '100%',
+          height: '100%',
+          ...buttonStyle
+        }}
+      >
+        {children}
+      </Button>
     </RouterLink>
   )
 } 
