@@ -1,73 +1,70 @@
 import React from 'react'
 
-export const FlexCol = ({ children, style, ...props }) => {
-  return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        ...style
-      }}
-      {...props}
-    >
-      {children}
-    </div>
-  )
-}
+/**
+ * Primitive layout components that provide consistent flexbox and grid layouts
+ */
 
-export const FlexRow = ({ children, style, ...props }) => {
-  return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-        ...style
-      }}
-      {...props}
-    >
-      {children}
-    </div>
-  )
-}
+/**
+ * Vertical flex container
+ */
+export const FlexCol = ({ children, style = {}, ...props }) => (
+  <div
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+      ...style
+    }}
+    {...props}
+  >
+    {children}
+  </div>
+)
 
-export function TwoColumnGrid({
-  children,
-  style,
-  ...props
-}) {
-  return (
-    <div
-      {...props}
-      style={{
-        position: 'relative',
-        display: 'grid',
-        gridTemplateColumns: 'repeat(2, 1fr)',
-        ...style,
-      }}
-    >
-      {children}
-    </div>
-  )
-}
+/**
+ * Horizontal flex container
+ */
+export const FlexRow = ({ children, style = {}, ...props }) => (
+  <div
+    style={{
+      display: 'flex',
+      flexDirection: 'row',
+      ...style
+    }}
+    {...props}
+  >
+    {children}
+  </div>
+)
 
-export function ThreeColumnGrid({
-  children,
-  style,
-  ...props
-}) {
-  return (
-    <div
-      {...props}
-      style={{
-        position: 'relative',
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr 1fr',
-        width: '100%',
-        height: '100%',
-        ...style,
-      }}
-    >
-      {children}
-    </div>
-  )
-} 
+/**
+ * Two-column grid layout
+ */
+export const TwoColumnGrid = ({ children, style = {}, ...props }) => (
+  <div
+    style={{
+      display: 'grid',
+      gridTemplateColumns: 'repeat(2, 1fr)',
+      ...style,
+    }}
+    {...props}
+  >
+    {children}
+  </div>
+)
+
+/**
+ * Three-column grid layout
+ */
+export const ThreeColumnGrid = ({ children, style = {}, ...props }) => (
+  <div
+    style={{
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr 1fr',
+      width: '100%',
+      ...style,
+    }}
+    {...props}
+  >
+    {children}
+  </div>
+) 

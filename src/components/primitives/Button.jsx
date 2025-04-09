@@ -1,5 +1,9 @@
 import React from 'react';
 
+/**
+ * Primary button component with standardized styling
+ * Used throughout the application for consistent UI
+ */
 export const Button = ({ children, onClick = () => {}, style = {}, ...props }) => {
   return (
     <button

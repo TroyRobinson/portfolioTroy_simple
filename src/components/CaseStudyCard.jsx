@@ -5,16 +5,10 @@ import { Button } from './primitives/Button.jsx'
 import { Link } from './primitives/Link.jsx'
 
 /**
- * Component for displaying an individual case study
- * @param {Object} props - Component props
- * @param {Object} props.study - The case study data to display
- * @param {Function} props.onDelete - Function to call when delete button is clicked
+ * Displays an individual case study with details and action buttons
  */
 const CaseStudyCard = ({ study, onDelete }) => {
-  // Guard against undefined study
-  if (!study) {
-    return null
-  }
+  if (!study) return null
 
   return (
     <div
@@ -29,7 +23,6 @@ const CaseStudyCard = ({ study, onDelete }) => {
         width: 'max-content',
         height: 'max-content',
         alignItems: 'flex-start',
-        justifyContent: 'flex-start',
         gap: 16,
       }}
     >
@@ -41,45 +34,20 @@ const CaseStudyCard = ({ study, onDelete }) => {
           width: '100%',
         }}
       >
-        <h3
-          style={{
-            fontSize: '1.3rem',
-            padding: '0',
-          }}
-        >
+        <h3 style={{ fontSize: '1.3rem' }}>
           {study.name || 'Untitled Study'}
         </h3>
-        <span
-          style={{
-            color: '#666',
-            fontSize: '0.9rem',
-          }}
-        >
+        <span style={{ color: '#666', fontSize: '0.9rem' }}>
           {study.date || ''}
         </span>
       </FlexRow>
-      <p
-        style={{
-          padding: '0 0 16px 0',
-          lineHeight: '1.5',
-        }}
-      >
+      
+      <p style={{ padding: '0 0 16px 0', lineHeight: '1.5' }}>
         {study.description || 'Missing Description'}
       </p>
-      <FlexCol
-        style={{
-          padding: '0',
-          gap: 8,
-          width: '100%',
-        }}
-      >
-        <h4
-          style={{
-            fontSize: '0.9rem',
-            color: '#666',
-            padding: '0 0 8px 0',
-          }}
-        >
+      
+      <FlexCol style={{ padding: '0', gap: 8, width: '100%' }}>
+        <h4 style={{ fontSize: '0.9rem', color: '#666', padding: '0 0 8px 0' }}>
           Technologies
         </h4>
         <FlexRow style={{ flexWrap: 'wrap', gap: '8px' }}>
@@ -91,23 +59,15 @@ const CaseStudyCard = ({ study, onDelete }) => {
               ))}
         </FlexRow>
       </FlexCol>
-      <FlexRow
-        style={{
-          gap: '8px',
-          width: '100%',
-        }}
-      >
+      
+      <FlexRow style={{ gap: '8px', width: '100%' }}>
         <Link
           href={`/portfolio/${
             study.name
-              ? study.name
-                  .toLowerCase()
-                  .replace(/\s+/g, '-')
+              ? study.name.toLowerCase().replace(/\s+/g, '-')
               : 'untitled'
           }`}
-          buttonStyle={{
-            fontSize: '0.8rem',
-          }}
+          buttonStyle={{ fontSize: '0.8rem' }}
         >
           View Details
         </Link>

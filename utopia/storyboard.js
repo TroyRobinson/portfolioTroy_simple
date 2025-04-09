@@ -172,7 +172,7 @@ export var storyboard = (
       }}
       data-label='TwoColumnGrid (primitives)'
     >
-      <TwoColumnGrid />
+      <TwoColumnGrid style={{}} />
     </Scene>
     <Scene
       id='threecolumngrid-scene'
@@ -186,7 +186,7 @@ export var storyboard = (
       }}
       data-label='ThreeColumnGrid (primitives)'
     >
-      <ThreeColumnGrid />
+      <ThreeColumnGrid style={{}} />
     </Scene>
     <Scene
       id='link-scene'
