@@ -7,6 +7,11 @@ import { Header } from '../src/components/Header'
 import Spinner from '../src/components/Spinner'
 import StatusMessage from '../src/components/StatusMessage'
 import { Button } from '../src/components/primitives/Button'
+import { FlexCol } from '../src/components/primitives/FlexLayout'
+import { FlexRow } from '../src/components/primitives/FlexLayout'
+import { TwoColumnGrid } from '../src/components/primitives/FlexLayout'
+import { ThreeColumnGrid } from '../src/components/primitives/FlexLayout'
+import { Link } from '../src/components/primitives/Link'
 import { Tag } from '../src/components/primitives/Tag'
 import PortfolioPage from '../src/pages/PortfolioPage'
 import { Playground } from '../src/playground'
@@ -126,6 +131,76 @@ export var storyboard = (
       <Button style={{}} onClick={() => {}}>
         Click Me
       </Button>
+    </Scene>
+    <Scene
+      id='flexcol-scene'
+      commentId='flexcol-scene'
+      style={{
+        width: 600,
+        height: 400,
+        position: 'absolute',
+        left: 1148,
+        top: 1584,
+      }}
+      data-label='FlexCol (primitives)'
+    >
+      <FlexCol style={{}} />
+    </Scene>
+    <Scene
+      id='flexrow-scene'
+      commentId='flexrow-scene'
+      style={{
+        width: 600,
+        height: 400,
+        position: 'absolute',
+        left: 1148,
+        top: 2204,
+      }}
+      data-label='FlexRow (primitives)'
+    >
+      <FlexRow style={{}} />
+    </Scene>
+    <Scene
+      id='twocolumngrid-scene'
+      commentId='twocolumngrid-scene'
+      style={{
+        width: 600,
+        height: 400,
+        position: 'absolute',
+        left: 1148,
+        top: 2824,
+      }}
+      data-label='TwoColumnGrid (primitives)'
+    >
+      <TwoColumnGrid />
+    </Scene>
+    <Scene
+      id='threecolumngrid-scene'
+      commentId='threecolumngrid-scene'
+      style={{
+        width: 600,
+        height: 400,
+        position: 'absolute',
+        left: 1148,
+        top: 3444,
+      }}
+      data-label='ThreeColumnGrid (primitives)'
+    >
+      <ThreeColumnGrid />
+    </Scene>
+    <Scene
+      id='link-scene'
+      commentId='link-scene'
+      style={{
+        width: 400,
+        height: 300,
+        position: 'absolute',
+        left: 1148,
+        top: 1584,
+      }}
+      data-label='Link (primitives)'
+    >
+      <Link style={{}} />
     </Scene>
     <Scene
       id='tag-scene'

@@ -1,18 +1,30 @@
-import React, { useState, useEffect } from 'react'
-import { FlexCol, FlexRow } from '../utils.jsx'
+import React, { useState } from 'react'
+import { FlexCol, FlexRow } from '../components/primitives/FlexLayout.jsx'
 import { Header } from '../components/Header.jsx'
 import Spinner from '../components/Spinner.jsx'
 import StatusMessage from '../components/StatusMessage.jsx'
 import CaseStudyCard from '../components/CaseStudyCard.jsx'
 import CaseStudyForm from '../components/CaseStudyForm.jsx'
+import { Button } from '../components/primitives/Button.jsx'
 import { useCaseStudies } from '../hooks/useCaseStudies.js'
+
+// Moved keyframes definition to a component that can be inserted once
+const PulseAnimation = () => (
+  <style>{`
+    @keyframes pulse {
+      0% { opacity: 0.6; }
+      50% { opacity: 1; }
+      100% { opacity: 0.6; }
+    }
+  `}</style>
+)
 
 // Skeleton component for loading state
 const SkeletonCard = () => (
   <div style={{
     backgroundColor: '#f5f5f5',
     borderRadius: '8px',
-    padding: '20px',
+    padding: '16px',
     width: '100%',
     boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
     animation: 'pulse 1.5s infinite',
@@ -21,14 +33,14 @@ const SkeletonCard = () => (
       height: '24px', 
       width: '40%', 
       backgroundColor: '#e0e0e0', 
-      marginBottom: '12px',
+      marginBottom: '8px',
       borderRadius: '4px',
     }} />
     <div style={{ 
       height: '80px', 
       width: '100%', 
       backgroundColor: '#e0e0e0',
-      marginBottom: '12px',
+      marginBottom: '8px',
       borderRadius: '4px',
     }} />
     <div style={{ 
@@ -40,7 +52,7 @@ const SkeletonCard = () => (
   </div>
 )
 
-const PortfolioPage = ({ style }) => {
+const PortfolioPage = ({ style = {} }) => {
   const {
     loading,
     error,
@@ -80,26 +92,25 @@ const PortfolioPage = ({ style }) => {
       style={{
         width: '100%',
         maxWidth: '1200px',
-        margin: '0 auto',
         minHeight: '100vh',
-        padding: '20px',
+        padding: '16px',
         boxSizing: 'border-box',
         overflowX: 'hidden',
         alignItems: 'flex-start',
         ...style,
       }}
     >
+      <PulseAnimation />
       <Header
         title='Case Studies'
         style={{ width: '100%' }}
       />
       <FlexCol
         style={{
-          padding: '20px',
+          padding: '16px',
           backgroundColor: 'white',
           borderRadius: '8px',
           boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-          margin: '0 auto',
           width: '100%',
         }}
       >
@@ -107,11 +118,11 @@ const PortfolioPage = ({ style }) => {
           style={{
             justifyContent: 'space-between',
             alignItems: 'center',
-            padding: '0 0 20px 0',
+            padding: '0 0 16px 0',
             width: '100%',
           }}
         >
-          <FlexCol style={{ gap: '5px' }}>
+          <FlexCol style={{ gap: '8px' }}>
             <div
               style={{ fontSize: '0.9rem', color: '#666' }}
             >
@@ -129,26 +140,15 @@ const PortfolioPage = ({ style }) => {
               isLoading={isClearing} 
             />
           </FlexCol>
-          <button
+          <Button
             onClick={() => setDialogOpen(true)}
-            disabled={isClearing || loading}
             style={{
-              backgroundColor: '#2b6cb0',
-              color: 'white',
-              padding: '10px 15px',
-              borderRadius: '4px',
-              border: 'none',
-              cursor:
-                isClearing || loading
-                  ? 'not-allowed'
-                  : 'pointer',
-              fontWeight: 'bold',
-              fontSize: '0.9rem',
               opacity: isClearing || loading ? 0.7 : 1,
+              cursor: isClearing || loading ? 'not-allowed' : 'pointer',
             }}
           >
             Add New Case Study
-          </button>
+          </Button>
         </FlexRow>
         
         {/* Add New Case Study Modal */}
@@ -170,11 +170,11 @@ const PortfolioPage = ({ style }) => {
             <div
               style={{
                 backgroundColor: 'white',
-                borderRadius: '6px',
-                boxShadow: '0 2px 10px rgba(0, 0, 0, 0.12)',
+                borderRadius: '8px',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.12)',
                 width: '90%',
                 maxWidth: '500px',
-                padding: '20px',
+                padding: '16px',
                 maxHeight: '85vh',
                 overflowY: 'auto',
               }}
@@ -183,7 +183,7 @@ const PortfolioPage = ({ style }) => {
                 style={{
                   fontSize: '1.5rem',
                   fontWeight: 'bold',
-                  padding: '0 0 20px 0',
+                  padding: '0 0 16px 0',
                 }}
               >
                 New Case Study
@@ -201,14 +201,14 @@ const PortfolioPage = ({ style }) => {
           !error &&
           caseStudies.length === 0 && (
             <div
-              style={{ padding: '20px 0', color: '#666' }}
+              style={{ padding: '16px 0', color: '#666' }}
             >
               No case studies yet. Add your first one!
             </div>
           )}
           
         {/* Case Studies List */}
-        <FlexCol style={{ gap: '15px', width: '100%' }}>
+        <FlexCol style={{ gap: '16px', width: '100%' }}>
           {loading ? (
             // Show skeleton placeholders while loading
             [...Array(skeletonCount)].map((_, index) => (
@@ -225,15 +225,6 @@ const PortfolioPage = ({ style }) => {
           )}
         </FlexCol>
       </FlexCol>
-      
-      {/* Add CSS for skeleton animation */}
-      <style>{`
-        @keyframes pulse {
-          0% { opacity: 0.6; }
-          50% { opacity: 1; }
-          100% { opacity: 0.6; }
-        }
-      `}</style>
     </FlexCol>
   )
 }

@@ -1,7 +1,8 @@
 import React from 'react'
-import { FlexCol, FlexRow } from '../utils.jsx'
+import { FlexCol, FlexRow } from './primitives/FlexLayout.jsx'
 import { Tag } from './primitives/Tag.jsx'
-import { Link } from '../Router.jsx'
+import { Button } from './primitives/Button.jsx'
+import { Link } from './primitives/Link.jsx'
 
 /**
  * Component for displaying an individual case study
@@ -20,7 +21,7 @@ const CaseStudyCard = ({ study, onDelete }) => {
       style={{
         border: '1px solid #eee',
         borderRadius: '8px',
-        padding: '21px 21px',
+        padding: '24px',
         backgroundColor: '#fafafa',
         display: 'flex',
         flexDirection: 'column',
@@ -29,16 +30,15 @@ const CaseStudyCard = ({ study, onDelete }) => {
         height: 'max-content',
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
-        gap: 11,
+        gap: 16,
       }}
     >
       <FlexRow
         style={{
           justifyContent: 'space-between',
           alignItems: 'flex-start',
-          padding: '0 0 10px 0',
-          width: 507,
-          height: 35,
+          padding: '0 0 8px 0',
+          width: '100%',
         }}
       >
         <h3
@@ -60,7 +60,7 @@ const CaseStudyCard = ({ study, onDelete }) => {
       </FlexRow>
       <p
         style={{
-          padding: '0 0 15px 0',
+          padding: '0 0 16px 0',
           lineHeight: '1.5',
         }}
       >
@@ -68,10 +68,9 @@ const CaseStudyCard = ({ study, onDelete }) => {
       </p>
       <FlexCol
         style={{
-          padding: '0px 0px -6px 0px',
+          padding: '0',
           gap: 8,
-          width: 507,
-          height: 56.5,
+          width: '100%',
         }}
       >
         <h4
@@ -83,7 +82,7 @@ const CaseStudyCard = ({ study, onDelete }) => {
         >
           Technologies
         </h4>
-        <FlexRow style={{ flexWrap: 'wrap', gap: '5px' }}>
+        <FlexRow style={{ flexWrap: 'wrap', gap: '8px' }}>
           {study.technologies &&
             study.technologies
               .split(',')
@@ -94,9 +93,8 @@ const CaseStudyCard = ({ study, onDelete }) => {
       </FlexCol>
       <FlexRow
         style={{
-          gap: '10px',
-          width: 507,
-          height: 25,
+          gap: '8px',
+          width: '100%',
         }}
       >
         <Link
@@ -107,34 +105,18 @@ const CaseStudyCard = ({ study, onDelete }) => {
                   .replace(/\s+/g, '-')
               : 'untitled'
           }`}
-          style={{
-            backgroundColor: '#2b6cb0',
-            color: 'white',
-            padding: '5px 10px',
-            borderRadius: '4px',
-            border: 'none',
-            cursor: 'pointer',
-            fontSize: '0.8rem',
-            textDecoration: 'none',
-            display: 'inline-block',
-          }}
         >
           View Details
         </Link>
-        <button
+        <Button
           onClick={() => onDelete(study)}
           style={{
             backgroundColor: '#f44336',
-            color: 'white',
-            padding: '5px 10px',
-            borderRadius: '4px',
-            border: 'none',
-            cursor: 'pointer',
             fontSize: '0.8rem',
           }}
         >
           Delete
-        </button>
+        </Button>
       </FlexRow>
     </div>
   )

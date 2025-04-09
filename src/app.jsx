@@ -30,59 +30,10 @@ export const App = () => {
       html, body {
         height: 100%;
         font-size: 16px;
-        line-height: 1;
+        line-height: 1.2;
         text-rendering: optimizeLegibility;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-      }
-      
-      /* 
-       * Text Element Spacing Normalization
-       * 
-       * Purpose: Ensure consistent text spacing across all environments
-       * 
-       * Why here instead of globals.css?
-       * 1. JavaScript injection gives higher CSS specificity
-       * 2. Guaranteed to load before component rendering
-       * 3. Runtime control over style application
-       * 4. Environment-independent behavior
-       * 
-       * Note: Font loading and responsive layout remain in globals.css
-       */
-      body h1, 
-      body h2, 
-      body h3, 
-      body h4, 
-      body h5, 
-      body h6, 
-      body p,
-      body div h1,
-      body div h2, 
-      body div h3, 
-      body div h4, 
-      body div h5,
-      body div h6, 
-      body div p {
-        display: block;
-        line-height: 1.2 !important;
-        max-width: 100%;
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-        border-width: 0 !important;
-        overflow-wrap: break-word;
-      }
-      
-      /* Prevent container queries from affecting text spacing */
-      @container (*) {
-        * {
-          all: revert;
-        }
       }
       
       /* Base styles */
@@ -99,64 +50,6 @@ export const App = () => {
         overflow-x: hidden;
       }
       
-      /* Typography base settings */
-      h1, h2, h3, h4, h5, h6, p, span, div {
-        display: block;
-        line-height: 1.2;
-        max-width: 100%;
-        overflow-wrap: break-word;
-      }
-      
-      /* Explicit typography styles */
-      h1 { 
-        font-size: 48px !important; 
-        font-weight: bold !important;
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
-      }
-      
-      h2 { 
-        font-size: 32px !important; 
-        font-weight: 600 !important;
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
-      }
-      
-      h3 { 
-        font-size: 24px !important; 
-        font-weight: 600 !important;
-      }
-      
-      p { 
-        font-size: 16px !important;
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
-      }
-      
-      /* Fully override any external title styling */
-      [class*="title"], .apptitle, .title {
-        all: unset;
-        display: block;
-        font-size: inherit !important;
-        line-height: 1.2 !important;
-      }
-
-      /* Layout container */
-      .container {
-        width: 100%;
-        max-width: 1200px;
-        min-width: 320px;
-        padding: 0 16px;
-        margin: 0 auto;
-        position: relative;
-      }
-      
       /* Form elements reset */
       button, input, select, textarea {
         font-family: inherit;
@@ -164,11 +57,8 @@ export const App = () => {
         line-height: 1.2;
         color: inherit;
         background: none;
-      }
-      
-      /* Lists reset */
-      ul, ol {
-        list-style: none;
+        border: none;
+        outline: none;
       }
       
       /* Links reset */
@@ -176,62 +66,26 @@ export const App = () => {
         text-decoration: none;
         color: inherit;
       }
-      
-      /* Tables reset */
-      table {
-        border-collapse: collapse;
-        border-spacing: 0;
-      }
-      
-      /* Scrollbars */
-      * {
-        scrollbar-width: thin;
-        scrollbar-color: rgba(155, 155, 155, 0.5) transparent;
-      }
-      
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      
-      ::-webkit-scrollbar-track {
-        background: transparent;
-      }
-      
-      ::-webkit-scrollbar-thumb {
-        background-color: rgba(155, 155, 155, 0.5);
-        border-radius: 20px;
-      }
-      
-      /* Target and disable Utopia specific styling */
-      [class*="utopia"], [id*="utopia"], [class*="Utopia"], [id*="Utopia"] {
-        all: unset !important;
-        display: block;
-      }
-    `;
-    
-    // Attempt to disable any external stylesheets (globals.css)
-    const disableExternalStyles = document.createElement('style');
-    disableExternalStyles.setAttribute('data-disable-external', 'true');
-    disableExternalStyles.textContent = `
-      /* Attempt to disable external styles */
-      @import url('') !important;
-      @import "" !important;
     `;
     
     // Insert at the beginning of head to ensure highest priority
     document.head.insertBefore(style, document.head.firstChild);
-    document.head.insertBefore(disableExternalStyles, document.head.firstChild);
     
     // Return cleanup function
     return () => {
       document.head.removeChild(style);
-      document.head.removeChild(disableExternalStyles);
     };
   }, []);
 
   return (
     <Router>
-      <div className="container">
+      <div style={{
+        width: '100%',
+        maxWidth: '1200px',
+        margin: '0 auto',
+        padding: '0 16px',
+        boxSizing: 'border-box',
+      }}>
         <AppContent />
       </div>
     </Router>
@@ -245,7 +99,7 @@ const AppContent = () => {
   return (
     <Switch>
       <Route path="/">
-        {() => <PortfolioPage style={{}} />}
+        {() => <PortfolioPage />}
       </Route>
     </Switch>
   );

@@ -5,7 +5,8 @@ export const Button = ({ children, onClick, style }) => {
     <button
       onClick={onClick}
       style={{
-        width: '120px',
+        width: 'auto',
+        minWidth: '120px',
         height: '40px',
         backgroundColor: '#2b6cb0',
         color: 'white',
